@@ -8,6 +8,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">設定</string>
     <string name="title">想吃啥?</string>
+    <string name="foodstreettitle">光華美食街</string>
     <string name="b1">小吃</string>
     <string name="b2">麵館</string>
     <string name="b3">便當</string>
@@ -20,6 +21,13 @@
         <item>便當</item>
         <item>餐廳</item>
         <item>麵館</item>
+    </string-array>
+    <string-array name="foodstreet_stores">
+        <item>光華飯包</item>
+        <item>藍迪義大利麵館</item>
+        <item>光華垃圾面</item>
+        <item>伍七玖牛肉麵</item>
+        <item>佐賀丼飯</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
 </resources>
