@@ -21,4 +21,5 @@
         <item>餐廳</item>
         <item>麵館</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 </resources>
