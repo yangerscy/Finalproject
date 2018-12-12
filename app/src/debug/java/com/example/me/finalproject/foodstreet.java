@@ -16,76 +16,74 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class foodstreet extends AppCompatActivity {
-    private RecyclerView recyclerl;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+public class foodstreet extends AppCompatActivity
+{
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foodstreet);
-        recyclerl = (RecyclerView) findViewById(R.id.recyclerl);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        recyclerl.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        recyclerl.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
-        recyclerl.setAdapter(mAdapter);
-
+        List<Member> memberList = new ArrayList<>();
+        memberList.add(new Member(1, R.drawable.lauchbox, "飯包"));
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+// MemberAdapter 會在步驟7建立
+        recyclerView.setAdapter(new MemberAdapter(this, memberList));
     }
-    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-        private String[] mDataset;
 
-        // Provide a reference to the views for each data item
-        // Complex data items may need more than one view per item, and
-        // you provide access to all the views for a data item in a view holder
-        public static class MyViewHolder extends RecyclerView.ViewHolder {
-            // each data item is just a string in this case
-            public TextView mTextView;
-            public MyViewHolder(TextView v) {
-                super(v);
-                mTextView = v;
-            }
+    private class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
+        private Context context;
+        private List<Member> memberList;
+
+        MemberAdapter(Context context, List<Member> memberList) {
+            this.context = context;
+            this.memberList = memberList;
         }
 
-        // Provide a suitable constructor (depends on the kind of dataset)
-        public MyAdapter(String[] myDataset) {
-            mDataset = myDataset;
-        }
-
-        // Create new views (invoked by the layout manager)
         @Override
-        public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                         int viewType) {
-            // create a new view
-            TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.activity_foodstreet, parent, false);
-
-            MyViewHolder vh = new MyViewHolder(v);
-            return vh;
+        public MemberAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(context).inflate(R.layout.recyclerview_cardview_item, parent, false);
+            return new ViewHolder(view);
         }
 
-        // Replace the contents of a view (invoked by the layout manager)
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
-            // - get element from your dataset at this position
-            // - replace the contents of the view with that element
-            holder.mTextView.setText(mDataset[position]);
-
+        public void onBindViewHolder(MemberAdapter.ViewHolder holder, int position) {
+            final Member member = memberList.get(position);
+            holder.imageId.setImageResource(member.getImage());
+            holder.textId.setText(String.valueOf(member.getId()));
+            holder.textName.setText(member.getName());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ImageView imageView = new ImageView(context);
+                    imageView.setImageResource(member.getImage());
+                    Toast toast = new Toast(context);
+                    toast.setView(imageView);
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
         }
 
-        // Return the size of your dataset (invoked by the layout manager)
         @Override
         public int getItemCount() {
-            return mDataset.length;
+            return memberList.size();
+        }
+
+        //Adapter 需要一個 ViewHolder，只要實作它的 constructor 就好，保存起來的view會放在itemView裡面
+        class ViewHolder extends RecyclerView.ViewHolder{
+            ImageView imageId;
+            TextView textId, textName;
+            ViewHolder(View itemView) {
+                super(itemView);
+                imageId = (ImageView) itemView.findViewById(R.id.imageId);
+                textId = (TextView) itemView.findViewById(R.id.textId);
+                textName = (TextView) itemView.findViewById(R.id.textName);
+            }
         }
     }
-
 }
+
+
 
