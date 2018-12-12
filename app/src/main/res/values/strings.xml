@@ -26,8 +26,9 @@
         <item>光華飯包</item>
         <item>藍迪義大利麵館</item>
         <item>光華垃圾面</item>
-        <item>伍七玖牛肉麵</item>
+        <item>伍柒玖牛肉麵</item>
         <item>佐賀丼飯</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_footstreetmap">Map</string>
 </resources>
