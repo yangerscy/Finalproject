@@ -91,6 +91,11 @@ public class Main2Activity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
+        else if (id == R.id.foodstreet) {
+            Intent foodstreet1 = new Intent(Main2Activity.this, com.example.me.finalproject.foodstreet
+                    .class);
+            Main2Activity.this.startActivity(foodstreet1);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

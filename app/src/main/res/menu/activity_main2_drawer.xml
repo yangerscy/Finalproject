@@ -21,7 +21,7 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />
         <item
-            android:id="@+id/food_street"
+            android:id="@+id/foodstreet"
             android:icon="@drawable/baseline_local_dining_black_24"
             android:title="光華美食街" />
     </group>
