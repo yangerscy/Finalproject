@@ -7,6 +7,11 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">設定</string>
+    <string name="title">想吃啥?</string>
+    <string name="b1">小吃</string>
+    <string name="b2">麵館</string>
+    <string name="b3">便當</string>
+    <string name="b4">自助餐</string>
     <string-array name="store_type">
         <item>小吃</item>
         <item>自助餐</item>
