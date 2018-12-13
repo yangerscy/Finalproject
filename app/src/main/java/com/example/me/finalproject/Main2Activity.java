@@ -92,8 +92,7 @@ public class Main2Activity extends AppCompatActivity
 
         }
         else if (id == R.id.foodstreet) {
-            Intent foodstreet1 = new Intent(Main2Activity.this, com.example.me.finalproject.foodstreet
-                    .class);
+            Intent foodstreet1 = new Intent(Main2Activity.this, com.example.me.finalproject.foodstreet.class);
             Main2Activity.this.startActivity(foodstreet1);
         }
 
