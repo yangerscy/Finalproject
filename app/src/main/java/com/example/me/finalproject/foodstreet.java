@@ -33,6 +33,20 @@ public class foodstreet extends AppCompatActivity
         memberList.add(new Member(3, R.drawable.trashnoddle, "光華垃圾面"));
         memberList.add(new Member(4, R.drawable.beefnoddle579, "伍柒玖牛肉麵"));
         memberList.add(new Member(5, R.drawable.sakadon, "佐賀丼飯"));
+        memberList.add(new Member(6, R.drawable.beefnoodle95, "玖伍牛肉麵"));
+        memberList.add(new Member(7, R.drawable.satoseiniku, "佐藤精肉店"));
+        memberList.add(new Member(8, R.drawable.yangdumplin, "楊記大餛飩"));
+        memberList.add(new Member(9, R.drawable.noodlericefull, "麵足飯飽便當"));
+        memberList.add(new Member(10, R.drawable.seafoodnoodle, "鼎吉粥棧"));
+        memberList.add(new Member(11, R.drawable.oldnoodle, "老德記牛肉麵"));
+        memberList.add(new Member(12, R.drawable.impasta, "I'm PASTA"));
+        memberList.add(new Member(13, R.drawable.matsunoodle, "馬祖麵館"));
+        memberList.add(new Member(14, R.drawable.karirice, "咖食堂"));
+        memberList.add(new Member(15, R.drawable.slivenoodle, "銀記牛肉麵"));
+        memberList.add(new Member(16, R.drawable.indiacari, "印度風咖哩"));
+        memberList.add(new Member(17, R.drawable.friderice, "喬喜蛋炒飯"));
+        memberList.add(new Member(18, R.drawable.vietname, "好滋味越南美食"));
+
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
