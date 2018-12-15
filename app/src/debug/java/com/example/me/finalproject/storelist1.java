@@ -15,7 +15,7 @@ import android.widget.ListView;
 public class storelist1 extends AppCompatActivity
 implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
 {
-    String[] liststore ;
+    String[] liststore = {} ;
     ListView  lisv;
     ArrayAdapter<String> aa;
     @Override

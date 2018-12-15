@@ -81,11 +81,12 @@ public class Main2Activity extends AppCompatActivity
                     .class);
             Main2Activity.this.startActivity(menu1);
         } else if (id == R.id.storelist) {
-
+            Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
+            startActivity(menustore);
         }
         else if (id == R.id.foodstreet) {
             Intent foodstreet1 = new Intent(Main2Activity.this, com.example.me.finalproject.foodstreet.class);
-            Main2Activity.this.startActivity(foodstreet1);
+            startActivity(foodstreet1);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

@@ -3,13 +3,7 @@
     package="com.example.me.finalproject">
 
     <application>
-        <activity android:name=".storelist">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".storelist1"
             android:label="@string/title_activity_storelist1"

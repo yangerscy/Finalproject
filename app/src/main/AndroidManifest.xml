@@ -55,6 +55,7 @@
         <activity
             android:name=".footstreetmap"
             android:label="@string/title_activity_footstreetmap"></activity>
+        <activity android:name=".foodstreet"></activity>
     </application>
 
 </manifest>
