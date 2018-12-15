@@ -63,6 +63,7 @@ public class footstreetmap extends FragmentActivity implements OnMapReadyCallbac
         LatLng indiacari = new LatLng(25.043497, 121.531502);
         LatLng sfridericeydney = new LatLng(25.043411, 121.531295);
         LatLng vietname = new LatLng(25.043359, 121.531493);
+
         mMap.addMarker(new MarkerOptions().position(lauchbox).title("光華飯包"));
         mMap.addMarker(new MarkerOptions().position(landi).title("藍迪義大利麵館"));
         mMap.addMarker(new MarkerOptions().position(trashnoddle).title("光華垃圾面"));
