@@ -1,5 +1,6 @@
 package com.example.me.finalproject;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +18,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class foodstreet extends AppCompatActivity
 {
     Button foodmap;
+    Button radon;
+    TextView radontxv;
+    Random randomGenerator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +64,12 @@ public class foodstreet extends AppCompatActivity
         Intent foodstreetmap = new Intent(foodstreet.this, com.example.me.finalproject.footstreetmap
                 .class);
         foodstreet.this.startActivity(foodstreetmap);
+    }
+    public  void foodstreetradon (View view){
+        radon = findViewById(R.id.ranfonfoodstreet);
+        radontxv = findViewById(R.id.foodstradon);
+        radontxv.setText("等等吃");
+
     }
 
     private class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
