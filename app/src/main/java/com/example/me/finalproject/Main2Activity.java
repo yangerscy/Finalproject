@@ -80,21 +80,18 @@ public class Main2Activity extends AppCompatActivity
             Intent menu1 = new Intent(Main2Activity.this, com.example.me.finalproject.Menu
                     .class);
             Main2Activity.this.startActivity(menu1);
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.storelist) {
 
         }
         else if (id == R.id.foodstreet) {
             Intent foodstreet1 = new Intent(Main2Activity.this, com.example.me.finalproject.foodstreet.class);
             Main2Activity.this.startActivity(foodstreet1);
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
