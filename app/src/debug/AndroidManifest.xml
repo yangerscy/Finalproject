@@ -1,7 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.me.finalproject">
 
     <application>
-        <activity android:name="com.example.me.finalproject.foodstreet"></activity>
+        <activity android:name=".foodstreet" />
+        <activity
+            android:name=".storelist"
+            android:label="@string/title_activity_storelist"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
+
 </manifest>
