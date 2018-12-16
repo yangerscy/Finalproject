@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/backet"
-        android:layout_width="206dp"
-        android:layout_height="259dp"
+        android:layout_width="309dp"
+        android:layout_height="309dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +21,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="要吃什麼?"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
