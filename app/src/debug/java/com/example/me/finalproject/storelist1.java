@@ -42,7 +42,7 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-       Intent listshow = new Intent(this,storelistshow.class);
+       Intent listshow = new Intent(this,Menu.class);
       startActivity(listshow);
     }
 
