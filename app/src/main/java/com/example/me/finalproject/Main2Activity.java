@@ -15,10 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    Button randonstore,weekmenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,14 @@ public class Main2Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    public  void torandomstore (View view){
+        Intent renadons = new Intent(this,com.example.me.finalproject.randomshow.class);
+        startActivity(renadons);
+    }
+    public  void toweekmenu (View view){
+        Intent weekm = new Intent(this,com.example.me.finalproject.aweekmenu.class);
+        startActivity(weekm);
     }
 
     @Override

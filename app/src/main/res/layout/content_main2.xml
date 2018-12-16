@@ -68,10 +68,11 @@
         app:layout_constraintTop_toTopOf="@+id/button" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/storeradon"
         android:layout_width="179dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
+        android:onClick="torandomstore"
         android:text="@string/b21"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,17 +80,18 @@
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/weekmenu"
         android:layout_width="179dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
         android:layout_marginTop="36dp"
+        android:onClick="toweekmenu"
         android:text="@string/b22"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/button8"
+        app:layout_constraintEnd_toEndOf="@+id/storeradon"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintStart_toStartOf="@+id/storeradon"
+        app:layout_constraintTop_toBottomOf="@+id/storeradon" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
