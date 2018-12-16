@@ -12,8 +12,7 @@
         android:id="@+id/lists"
         android:layout_width="368dp"
         android:layout_height="495dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="33dp" />
 </android.support.constraint.ConstraintLayout>
