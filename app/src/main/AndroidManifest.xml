@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.me.finalproject">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -54,8 +55,9 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".footstreetmap"
-            android:label="@string/title_activity_footstreetmap"></activity>
-        <activity android:name=".foodstreet"></activity>
+            android:label="@string/title_activity_footstreetmap" />
+        <activity android:name=".foodstreet" />
+        <activity android:name=".storelistmemo"></activity>
     </application>
 
 </manifest>
