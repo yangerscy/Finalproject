@@ -11,7 +11,7 @@
         <item
             android:id="@+id/storelist"
             android:icon="@drawable/ic_view_list_black_24dp"
-            android:title="菜單列表" />
+            android:title="店家列表" />
         <item
             android:id="@+id/foodstreet"
             android:icon="@drawable/baseline_local_dining_black_24"
