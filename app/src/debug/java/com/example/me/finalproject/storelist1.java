@@ -45,10 +45,10 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
         memberList.add(new Member(5, R.drawable.sakadon, "佐賀丼飯"));
         memberList.add(new Member(6, R.drawable.beefnoodle95, "玖伍牛肉麵"));
         memberList.add(new Member(7, R.drawable.satoseiniku, "佐藤精肉店"));
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+       /* RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));*/
 // MemberAdapter 會在步驟7建立
-        recyclerView.setAdapter(new MemberAdapter(this, memberList));
+        /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
     }
     public  void newdata1 (View view){
        Intent newdata = new Intent(this,Menu.class);
