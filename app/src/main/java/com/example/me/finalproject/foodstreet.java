@@ -75,7 +75,7 @@ public class foodstreet extends AppCompatActivity
         Random x = new Random();
         getlist = x.nextInt(18);
 
-        radontxv.setText(String.valueOf("等等吃~:"+randomlist[getlist]));
+        radontxv.setText(String.valueOf("等等吃~"+randomlist[getlist]));
 
     }
 

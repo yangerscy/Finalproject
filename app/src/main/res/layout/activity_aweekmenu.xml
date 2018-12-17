@@ -16,4 +16,24 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/makeweek"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="創建菜單"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.75" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="366dp"
+        android:layout_height="431dp"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="72dp" />
 </android.support.constraint.ConstraintLayout>
