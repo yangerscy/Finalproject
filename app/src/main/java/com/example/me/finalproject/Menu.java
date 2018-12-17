@@ -3,8 +3,11 @@ package com.example.me.finalproject;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,10 +15,14 @@ import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -24,8 +31,11 @@ import java.sql.SQLData;
 public class Menu extends AppCompatActivity {
     Uri imgUri;
     ImageView imv;
-    public SQLData DH=null;
-    public SQLiteDatabase db;
+    static final String db_name="testDB";
+    static final String tb_name="storelist";
+    SQLiteDatabase db;
+
+    String pic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +87,11 @@ public class Menu extends AppCompatActivity {
             Toast.makeText(this,"無法讀取圖片",Toast.LENGTH_LONG).show();
             return;
         }
-
-        imv.setImageBitmap(bmp);
+        pic=bmp.toString();
+        imv.setImageBitmap(bmp);//取圖
 
     }
+
     private void savePhoto() {
         imgUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new ContentValues());
         Intent save = new Intent("android.media.action.IMAGE_CAPTURE");
@@ -121,7 +132,66 @@ public class Menu extends AppCompatActivity {
     }
 
     public void finishw(View view) {
-        finish();
+
+        EditText store =(EditText)findViewById(R.id.store);
+        Spinner  type = (Spinner)findViewById(R.id.type);
+
+        db=openOrCreateDatabase(db_name,Context.MODE_PRIVATE,null);
+        String createTable="CREATE TABLE IF NOT EXISTS " +
+                tb_name+
+                "(name VARCHAR(32), " +
+                "phone VARCHAR(16), " +
+                "email VARCHAR(64))";
+        db.execSQL(createTable);
+
+        Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
+
+
+            addData("Flag Publishing Co.","02-23963257","service@flag.com.tw");
+
+            c =db.rawQuery("SELECT * FROM "+tb_name,null);
+
+
+        if(c.moveToFirst()){
+            String str ="總共有 "+c.getCount() +"筆資料\n";
+            str+="-----\n";
+
+            do {
+                str+="name:"+c.getString(0)+"\n";
+                str+="phone:"+c.getString(1)+"\n";
+                str+="email:"+c.getString(2)+"\n";
+                str+="-----\n";
+
+            }while (c.moveToNext());
+
+
+        }
+
+        db.close();
+    }
+    private void addData(String name,String phone, String email){
+        ContentValues cv =new ContentValues(3);
+        cv.put("name",name);
+        cv.put("phone",phone);
+        cv.put("email",email);
+
+        db.insert(tb_name,null,cv);
+    }
+    private void myAlertDialog() {
+        AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
+        MyAlertDialog.setTitle("標題");
+        MyAlertDialog.setMessage("我是內容");
+        DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // 如果不做任何事情 就會直接關閉 對話方塊
+            }
+        };
+        ;
+        MyAlertDialog.setNeutralButton("中間按鈕", OkClick);
+        MyAlertDialog.setPositiveButton("左邊按鈕", OkClick);
+        MyAlertDialog.setNegativeButton("右邊按鈕", OkClick);
+        MyAlertDialog.show();
+
     }
 
 }
