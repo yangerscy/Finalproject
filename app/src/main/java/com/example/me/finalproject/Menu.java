@@ -58,12 +58,12 @@ public class Menu extends AppCompatActivity {
         db.execSQL(createTable);
 
         Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
-
+/*
         if(c.getCount()==0){
 
-        }
-        addData(S,T[index],"");
-
+        }*/
+        addData(S,T[index],pic);
+/*
         c =db.rawQuery("SELECT * FROM "+tb_name,null);
 
 
@@ -79,6 +79,7 @@ public class Menu extends AppCompatActivity {
 
             }while (c.moveToNext());
         }
+        */
         db.close();
     }
     private void addData(String store,String type, String picture){
