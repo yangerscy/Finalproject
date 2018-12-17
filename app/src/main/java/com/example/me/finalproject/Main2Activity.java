@@ -2,6 +2,7 @@ package com.example.me.finalproject;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -98,10 +99,12 @@ public class Main2Activity extends AppCompatActivity
         else if (id == R.id.foodstreet) {
             Intent foodstreet1 = new Intent(Main2Activity.this, com.example.me.finalproject.foodstreet.class);
             startActivity(foodstreet1);
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        }  else if (id == R.id.nav_send) {
+            Intent emailback = new Intent(Intent.ACTION_VIEW);
+            emailback.setData(Uri.parse("mailto:eatwhatlater@gmail.com"));
+            emailback.putExtra(Intent.EXTRA_SUBJECT,"要吃甚麼?的意見回覆");
+            emailback.putExtra(Intent.EXTRA_TEXT,"我的意見是:\t");
+            startActivity(emailback);
         }
 
 
