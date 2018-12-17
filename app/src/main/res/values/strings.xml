@@ -3,8 +3,8 @@
     <string name="title_activity_main2">要吃甚麼?</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">要吃甚麼?</string>
+    <string name="nav_header_subtitle">應用軟體設計實習期末專題</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">設定</string>
     <string name="title">想吃啥?</string>
