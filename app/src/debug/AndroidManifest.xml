@@ -5,9 +5,7 @@
     <application>
         <activity
             android:name=".storelist1"
-            android:label="@string/title_activity_storelist1"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".storelistshow" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".aboutus"></activity>
     </application>
 
