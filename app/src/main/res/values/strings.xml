@@ -15,7 +15,8 @@
     <string name="b3">便當</string>
     <string name="b4">自助餐</string>
     <string name="b21">隨機店家</string>
-    <string name="b22">一週菜單</string>為
+    <string name="b22">一週菜單</string>
+
     <string-array name="store_type">
         <item>小吃</item>
         <item>自助餐</item>
@@ -23,6 +24,7 @@
         <item>餐廳</item>
         <item>麵館</item>
     </string-array>
+
     <string-array name="foodstreet_stores">
         <item>光華飯包</item>
         <item>藍迪義大利麵館</item>

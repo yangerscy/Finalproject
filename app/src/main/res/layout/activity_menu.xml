@@ -13,7 +13,7 @@
         android:onClick="finishw"
         android:text="完成"
         app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="@+id/type"
+        app:layout_constraintEnd_toEndOf="@+id/typein"
         app:layout_constraintTop_toTopOf="@+id/button5"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -24,9 +24,9 @@
         android:layout_marginStart="44dp"
         android:text="店家類型:"
         android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/type"
+        app:layout_constraintBottom_toBottomOf="@+id/typein"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/type" />
+        app:layout_constraintTop_toTopOf="@+id/typein" />
 
     <TextView
         android:id="@+id/storename"
@@ -36,11 +36,11 @@
         android:layout_marginBottom="56dp"
         android:text="店名:"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/type"
+        app:layout_constraintBottom_toTopOf="@+id/typein"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/store"
+        android:id="@+id/storein"
         android:layout_width="wrap_content"
         android:layout_height="47dp"
         android:layout_marginStart="28dp"
@@ -54,14 +54,14 @@
         app:layout_constraintVertical_bias="0.061" />
 
     <Spinner
-        android:id="@+id/type"
+        android:id="@+id/typein"
         android:layout_width="187dp"
         android:layout_height="44dp"
         android:layout_marginTop="156dp"
         android:entries="@array/store_type"
-        app:layout_constraintEnd_toEndOf="@+id/store"
+        app:layout_constraintEnd_toEndOf="@+id/storein"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/store"
+        app:layout_constraintStart_toStartOf="@+id/storein"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

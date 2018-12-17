@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -22,29 +21,74 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.sql.SQLData;
 
 public class Menu extends AppCompatActivity {
     Uri imgUri;
     ImageView imv;
-    static final String db_name="testDB";
+    static final String db_name="storelistDB";
     static final String tb_name="storelist";
     SQLiteDatabase db;
 
     String pic;
+    EditText storeinput;
+    Spinner  typeinput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        storeinput = (EditText)findViewById(R.id.storein);
+        typeinput =(Spinner)findViewById(R.id.typein);
 
+
+        String S =storeinput.getText().toString();//店家的店名輸入
+        String[] T = getResources().getStringArray(R.array.store_type);//店家類型輸入
+        int index=typeinput.getSelectedItemPosition();
+
+        db=openOrCreateDatabase(db_name,Context.MODE_PRIVATE,null);
+        String createTable="CREATE TABLE IF NOT EXISTS " +
+                tb_name+
+                "(store VARCHAR(32), " +
+                "type VARCHAR(16), " +
+                "picture VARCHAR(64))";
+        db.execSQL(createTable);
+
+        Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
+
+        if(c.getCount()==0){
+
+        }
+        addData(S,T[index],"");
+
+        c =db.rawQuery("SELECT * FROM "+tb_name,null);
+
+
+        if(c.moveToFirst()){
+            String str ="總共有 "+c.getCount() +"筆資料\n";
+            str+="-----\n";
+
+            do {
+                str+="store:"+c.getString(0)+"\n";
+                str+="type:"+c.getString(1)+"\n";
+                str+="picture:"+c.getString(2)+"\n";
+                str+="-----\n";
+
+            }while (c.moveToNext());
+        }
+        db.close();
     }
+    private void addData(String store,String type, String picture){
+        ContentValues cv =new ContentValues(3);
+        cv.put("store",store);
+        cv.put("type",type);
+        cv.put("picture",picture);
 
+        db.insert(tb_name,null,cv);
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permission, int[] grantResult) {
@@ -133,50 +177,12 @@ public class Menu extends AppCompatActivity {
 
     public void finishw(View view) {
 
-        EditText store =(EditText)findViewById(R.id.store);
-        Spinner  type = (Spinner)findViewById(R.id.type);
-
-        db=openOrCreateDatabase(db_name,Context.MODE_PRIVATE,null);
-        String createTable="CREATE TABLE IF NOT EXISTS " +
-                tb_name+
-                "(name VARCHAR(32), " +
-                "phone VARCHAR(16), " +
-                "email VARCHAR(64))";
-        db.execSQL(createTable);
-
-        Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
+        EditText store =(EditText)findViewById(R.id.storein);
+        Spinner  type = (Spinner)findViewById(R.id.typein);
 
 
-            addData("Flag Publishing Co.","02-23963257","service@flag.com.tw");
-
-            c =db.rawQuery("SELECT * FROM "+tb_name,null);
-
-
-        if(c.moveToFirst()){
-            String str ="總共有 "+c.getCount() +"筆資料\n";
-            str+="-----\n";
-
-            do {
-                str+="name:"+c.getString(0)+"\n";
-                str+="phone:"+c.getString(1)+"\n";
-                str+="email:"+c.getString(2)+"\n";
-                str+="-----\n";
-
-            }while (c.moveToNext());
-
-
-        }
-
-        db.close();
     }
-    private void addData(String name,String phone, String email){
-        ContentValues cv =new ContentValues(3);
-        cv.put("name",name);
-        cv.put("phone",phone);
-        cv.put("email",email);
 
-        db.insert(tb_name,null,cv);
-    }
     private void myAlertDialog() {
         AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
         MyAlertDialog.setTitle("標題");
