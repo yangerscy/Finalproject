@@ -22,22 +22,20 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storelist1);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         lisv = findViewById(R.id.lists);
         aa= new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,liststore);
         lisv.setAdapter(aa);
         lisv.setOnItemClickListener(this);
         lisv.setOnItemLongClickListener(this);
+    }
+    public  void newdata1 (View view){
+       Intent newdata = new Intent(this,Menu.class);
+       startActivity(newdata);
+
     }
 
     @Override
