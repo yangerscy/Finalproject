@@ -5,8 +5,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">要吃甚麼?</string>
     <string name="nav_header_subtitle">應用軟體設計實習期末專題</string>
+    <string name="abousname">要吃甚麼? 為應用軟體設計實習期末專題</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">設定</string>
+    <string name="action_settings">關於我們</string>
     <string name="title">想吃啥?</string>
     <string name="foodstreettitle">光華美食街</string>
     <string name="b1">小吃</string>
@@ -14,7 +15,7 @@
     <string name="b3">便當</string>
     <string name="b4">自助餐</string>
     <string name="b21">隨機店家</string>
-    <string name="b22">一週菜單</string>
+    <string name="b22">一週菜單</string>為
     <string-array name="store_type">
         <item>小吃</item>
         <item>自助餐</item>
