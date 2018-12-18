@@ -37,7 +37,7 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
         lisv.setOnItemClickListener(this);
         lisv.setOnItemLongClickListener(this);
 
-        List<Member> memberList = new ArrayList<>();
+        /*List<Member> memberList = new ArrayList<>();
         memberList.add(new Member(1, R.drawable.lauchbox, "光華飯包"));
         memberList.add(new Member(2, R.drawable.landi, "藍迪義大利麵"));
         memberList.add(new Member(3, R.drawable.trashnoddle, "光華垃圾面"));
