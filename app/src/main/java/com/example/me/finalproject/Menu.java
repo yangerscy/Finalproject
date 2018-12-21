@@ -57,7 +57,7 @@ public class Menu extends AppCompatActivity {
                 "picture VARCHAR(64))";
         db.execSQL(createTable);
 
-        Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
+        //Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
 /*
         if(c.getCount()==0){
 
