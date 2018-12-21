@@ -181,6 +181,8 @@ public class Menu extends AppCompatActivity {
         EditText store =(EditText)findViewById(R.id.storein);
         Spinner  type = (Spinner)findViewById(R.id.typein);
 
+        finish();
+
 
     }
 
