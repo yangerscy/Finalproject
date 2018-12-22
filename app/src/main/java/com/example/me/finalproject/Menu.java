@@ -62,7 +62,7 @@ public class Menu extends AppCompatActivity {
         if(c.getCount()==0){
 
         }*/
-        addData(S,T[index],pic);
+        //addData(S,T[index],pic);
 /*
         c =db.rawQuery("SELECT * FROM "+tb_name,null);
 
@@ -176,10 +176,11 @@ public class Menu extends AppCompatActivity {
         }
     }
 
-    public void finishw(View view) {
+    public void finishw(View v) {
 
-        EditText store =(EditText)findViewById(R.id.storein);
-        Spinner  type = (Spinner)findViewById(R.id.typein);
+        String storestr=storeinput.getText().toString().trim();
+        String  typestr=typeinput.getSelectedItem().toString();
+        addData(storestr,typestr,pic);
 
         finish();
 

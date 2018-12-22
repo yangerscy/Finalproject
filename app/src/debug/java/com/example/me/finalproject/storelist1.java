@@ -1,7 +1,10 @@
 package com.example.me.finalproject;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +26,11 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
     String[] liststore = {} ;
     ListView  lisv;
     ArrayAdapter<String> aa;
+
+    static final String db_name="storelistDB";
+    static final String tb_name="storelist";
+    SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +57,38 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));*/
 // MemberAdapter 會在步驟7建立
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
+        db=openOrCreateDatabase(db_name,Context.MODE_PRIVATE,null);
+
+        String createTable="CREATE TABLE IF NOT EXISTS " +
+                tb_name+
+                "(store VARCHAR(32), " +
+                "type VARCHAR(16), " +
+                "picture VARCHAR(64))";
+        db.execSQL(createTable);
+        Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
+
+        if(c.getCount()==0){
+
+        }
+        //addData(S,T[index],pic);
+
+        c =db.rawQuery("SELECT * FROM "+tb_name,null);
+
+
+        if(c.moveToFirst()){
+            String str ="總共有 "+c.getCount() +"間店家\n";
+            str+="-----\n";
+
+            do {
+                str+="store:"+c.getString(0)+"\n";
+                str+="type:"+c.getString(1)+"\n";
+                str+="picture:"+c.getString(2)+"\n";
+                str+="-----\n";
+
+            }while (c.moveToNext());
+        }
+
+        db.close();
     }
     public  void newdata1 (View view){
        Intent newdata = new Intent(this,Menu.class);
