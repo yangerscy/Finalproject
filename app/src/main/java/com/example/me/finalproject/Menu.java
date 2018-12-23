@@ -52,7 +52,8 @@ public class Menu extends AppCompatActivity {
         db=openOrCreateDatabase(db_name,Context.MODE_PRIVATE,null);
         String createTable="CREATE TABLE IF NOT EXISTS " +
                 tb_name+
-                "(store VARCHAR(32), " +
+                "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "store VARCHAR(32), " +
                 "type VARCHAR(16), " +
                 "picture VARCHAR(64))";
         db.execSQL(createTable);

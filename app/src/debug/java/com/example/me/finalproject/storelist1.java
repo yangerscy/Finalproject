@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +29,10 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
     ListView  lisv;
     ArrayAdapter<String> aa;
 
+    SimpleCursorAdapter adapter;
     static final String db_name="storelistDB";
     static final String tb_name="storelist";
+    static  final String [] FROM = new String[]{"store","type","pciture"};
     SQLiteDatabase db;
 
     @Override
@@ -38,24 +42,14 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
+/*
         lisv = findViewById(R.id.lists);
         aa= new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,liststore);
         lisv.setAdapter(aa);
         lisv.setOnItemClickListener(this);
         lisv.setOnItemLongClickListener(this);
 
-        /*List<Member> memberList = new ArrayList<>();
-        memberList.add(new Member(1, R.drawable.lauchbox, "光華飯包"));
-        memberList.add(new Member(2, R.drawable.landi, "藍迪義大利麵"));
-        memberList.add(new Member(3, R.drawable.trashnoddle, "光華垃圾面"));
-        memberList.add(new Member(4, R.drawable.beefnoddle579, "伍柒玖牛肉麵"));
-        memberList.add(new Member(5, R.drawable.sakadon, "佐賀丼飯"));
-        memberList.add(new Member(6, R.drawable.beefnoodle95, "玖伍牛肉麵"));
-        memberList.add(new Member(7, R.drawable.satoseiniku, "佐藤精肉店"));
-       /* RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));*/
-// MemberAdapter 會在步驟7建立
+*/
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
         db=openOrCreateDatabase(db_name,Context.MODE_PRIVATE,null);
 
@@ -70,7 +64,11 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
         if(c.getCount()==0){
 
         }
-        //addData(S,T[index],pic);
+
+        adapter = new SimpleCursorAdapter(this,
+                R.layout.storelistdb,c,
+                FROM,
+                new int[] {R.id.store,R.id.type,R.id.picture},0);
 
         c =db.rawQuery("SELECT * FROM "+tb_name,null);
 
@@ -80,7 +78,7 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
             str+="-----\n";
 
             do {
-                str+="store:"+c.getString(0)+"\n";
+                str +="store:"+c.getString(0)+"\n";
                 str+="type:"+c.getString(1)+"\n";
                 str+="picture:"+c.getString(2)+"\n";
                 str+="-----\n";
