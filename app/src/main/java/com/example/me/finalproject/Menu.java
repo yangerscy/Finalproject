@@ -177,13 +177,14 @@ public class Menu extends AppCompatActivity {
         }
     }
 
-    public void finishw(View v) {
+    public void insert(View v) {
 
         String storestr=storeinput.getText().toString().trim();
         String  typestr=typeinput.getSelectedItem().toString();
         addData(storestr,typestr,pic);
 
-        finish();
+        Toast.makeText(this,"新增成功"+storestr+typestr+pic,Toast.LENGTH_SHORT);
+
 
 
     }

@@ -64,12 +64,12 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
         if(c.getCount()==0){
 
         }
-
+/*
         adapter = new SimpleCursorAdapter(this,
-                R.layout.storelistdb,c,
+                R.layout.,c,
                 FROM,
                 new int[] {R.id.store,R.id.type,R.id.picture},0);
-
+*/
         c =db.rawQuery("SELECT * FROM "+tb_name,null);
 
 
