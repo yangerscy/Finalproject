@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,9 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
                 str+="-----\n";
 
             }while (c.moveToNext());
+
+            TextView txv =(TextView)findViewById(R.id.txv);
+            txv.setText(str);
         }
 
         db.close();

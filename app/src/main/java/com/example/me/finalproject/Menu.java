@@ -183,7 +183,7 @@ public class Menu extends AppCompatActivity {
         String  typestr=typeinput.getSelectedItem().toString();
         addData(storestr,typestr,pic);
 
-        Toast.makeText(this,"新增成功"+storestr+typestr+pic,Toast.LENGTH_SHORT);
+        Toast.makeText(this,"新增成功"+storestr+typestr+pic,Toast.LENGTH_LONG);
 
 
 
