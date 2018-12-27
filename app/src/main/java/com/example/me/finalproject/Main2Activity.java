@@ -20,7 +20,7 @@ import android.widget.Button;
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    Button randonstore,weekmenu;
+    Button randonstore,weekmenu,noodleshop,liitleeat,buffee,lunchbox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +46,22 @@ public class Main2Activity extends AppCompatActivity
     public  void toweekmenu (View view){
         Intent weekm = new Intent(this,com.example.me.finalproject.aweekmenu.class);
         startActivity(weekm);
+    }
+    public  void tolittleeat (View view){
+        Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
+        startActivity(menustore);
+    }
+    public  void tolaunchbox (View view){
+        Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
+        startActivity(menustore);
+    }
+    public  void tonoodleshop (View view){
+        Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
+        startActivity(menustore);
+    }
+    public  void tobuffe (View view){
+        Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
+        startActivity(menustore);
     }
 
     @Override
