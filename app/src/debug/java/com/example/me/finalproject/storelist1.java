@@ -1,13 +1,16 @@
 package com.example.me.finalproject;
 
 import android.content.ClipData;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -15,83 +18,73 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class storelist1 extends AppCompatActivity
-implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
+implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,View.OnClickListener
 {
     String[] liststore = {} ;
     ListView  lisv;
     ArrayAdapter<String> aa;
-
-    SimpleCursorAdapter adapter;
-    static final String db_name="storelistDB";
-    static final String tb_name="storelist";
-    static  final String [] FROM = new String[]{"store","type","pciture"};
     SQLiteDatabase db;
+    TextView tv_UID;
+    EditText et_type,et_store;
+    Cursor cursor=null;
 
+    Button bt_update,bt_delete,bt_query,bt_queryall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storelist1);
+        et_store = (EditText)findViewById(R.id.et_store);
+        et_type = (EditText)findViewById(R.id.et_type);
+        tv_UID=(TextView)findViewById(R.id.tv_UID);
+        bt_delete=(Button)findViewById(R.id.bt_delete);
+        bt_query=(Button)findViewById(R.id.bt_query);
+        bt_queryall=(Button)findViewById(R.id.bt_queryall);
+        bt_update=(Button)findViewById(R.id.bt_update);
+
+        bt_queryall.setOnClickListener(this);
+        bt_update.setOnClickListener(this);
+        bt_query.setOnClickListener(this);
+        bt_delete.setOnClickListener(this);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-/*
-        lisv = findViewById(R.id.lists);
-        aa= new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,liststore);
+
+        lisv = (ListView)findViewById(R.id.lists);
+        lisv.setOnItemClickListener(this);
+ /*       aa= new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,liststore);
         lisv.setAdapter(aa);
         lisv.setOnItemClickListener(this);
         lisv.setOnItemLongClickListener(this);
 
 */
+        db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
+
+        try {
+            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type TEXT)";
+            db.execSQL(createTable);
+            Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception ex){Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();}
+
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
-        db=openOrCreateDatabase(db_name,Context.MODE_PRIVATE,null);
 
-        String createTable="CREATE TABLE IF NOT EXISTS " +
-                tb_name+
-                "(store VARCHAR(32), " +
-                "type VARCHAR(16), " +
-                "picture VARCHAR(64))";
-        db.execSQL(createTable);
-        Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
-
-        if(c.getCount()==0){
-
-        }
-/*
-        adapter = new SimpleCursorAdapter(this,
-                R.layout.,c,
-                FROM,
-                new int[] {R.id.store,R.id.type,R.id.picture},0);
-*/
-        c =db.rawQuery("SELECT * FROM "+tb_name,null);
-
-
-        if(c.moveToFirst()){
-            String str ="總共有 "+c.getCount() +"間店家\n";
-            str+="-----\n";
-
-            do {
-                str +="store:"+c.getString(0)+"\n";
-                str+="type:"+c.getString(1)+"\n";
-                str+="picture:"+c.getString(2)+"\n";
-                str+="-----\n";
-
-            }while (c.moveToNext());
-
-            TextView txv =(TextView)findViewById(R.id.txv);
-            txv.setText(str);
-        }
-
-        db.close();
     }
+
+
+
+
     public  void newdata1 (View view){
        Intent newdata = new Intent(this,Menu.class);
        startActivity(newdata);
@@ -102,6 +95,13 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
        Intent listshow = new Intent(this,Menu.class);
       startActivity(listshow);
+
+      Cursor c=db.rawQuery("SELECT _id, store, type FROM storelist1 WHERE _id="+id,null);
+      c.moveToFirst();
+      tv_UID.setText(""+c.getInt(0));
+      et_store.setText(""+c.getInt(1));
+      et_type.setText(""+c.getInt(2));
+
     }
 
     @Override
@@ -109,5 +109,109 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener
         liststore[position] = (position+1) + ".";
         aa.notifyDataSetChanged();
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        try{
+            switch (v.getId()){
+                case R.id.bt_update:{
+                    ContentValues cv = new ContentValues();
+                    cv.put("store",String.valueOf(et_store));
+                    cv.put("type",String.valueOf(et_type));
+
+                    try{
+                        db.update("storelist1",cv,"_id="+String.valueOf(tv_UID),null);
+                        cursor=db.rawQuery("SELECT _id, _id ||'.'|| store store,type FROM storelist1",null);
+                        UpdateListView(cursor);
+                        Toast.makeText(getApplicationContext(),"update success",Toast.LENGTH_SHORT).show();
+
+                    }
+                    catch (Exception ex){
+                        Toast.makeText(getApplicationContext(),"update error",Toast.LENGTH_SHORT).show();
+                    }
+                break;
+                }
+
+                case R.id.bt_delete:{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(storelist1.this);
+                    builder.setTitle("確定刪除");
+                    builder.setMessage("確定要刪除"+et_store.getText()+"這家店家?");
+                    builder.setNeutralButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                db.delete("storelist1","_id="+String.valueOf(tv_UID.getText()),null);
+                                cursor=db.rawQuery("SELECT _id,_id|| '.'|| store store, type FROM storelist1",null);
+                                UpdateListView(cursor);
+                                Toast.makeText(getApplicationContext(),"刪除資料成功!",Toast.LENGTH_SHORT).show();
+                                tv_UID.setText("");
+                                et_store.setText("");
+                                et_type.setText("");
+                            }
+                            catch (Exception ex){
+                                Toast.makeText(getApplicationContext(),"資料刪除失敗!",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    builder.show();
+                    break;
+                }
+
+                case R.id.bt_query:{
+                    try{
+                        cursor = db.rawQuery("SELECT _id, _id ||'.'|| store store,type FROM storelist1 WHERE type"+
+                                String.valueOf(et_type.getText()),null);
+                        UpdateListView(cursor);
+                        Cursor c=db.rawQuery("SELECT _id. store . tpye FROM storelist1 WHERE store="+
+                                String.valueOf(et_type.getText()),null);
+                        c.moveToFirst();
+                        et_type.setText(""+c.getInt(0));
+                        Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
+
+                    }
+                    catch (Exception ex){
+                        Toast.makeText(getApplicationContext(),"query error",Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+                case R.id.bt_queryall:{
+                        try{
+                            cursor = db.rawQuery("SELECT _id, _id ||'.'|| store store,type FROM storelist1",null);
+                            UpdateListView(cursor);
+                            Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
+
+                        }
+                        catch (Exception ex){
+                            Toast.makeText(getApplicationContext(),"query error",Toast.LENGTH_SHORT).show();
+                        }
+                    break;
+                }
+            }
+        }catch (Exception ex){
+            Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    protected void onDestroy(){
+        super.onDestroy();
+        db.execSQL("DROP TABLE storelist1");
+        db.close();
+        deleteDatabase("storelistDB");
+    }
+
+    public void UpdateListView(Cursor cursor){
+        if(cursor!= null && cursor.getCount() >0){
+            SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_2,
+                    cursor,new String[]{"store","type"},
+                    new int[]{android.R.id.text1,android.R.id.text2},0 );
+            lisv.setAdapter(adapter);
+        }
     }
 }

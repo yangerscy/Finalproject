@@ -28,12 +28,12 @@ import java.io.IOException;
 public class Menu extends AppCompatActivity {
     Uri imgUri;
     ImageView imv;
-    static final String db_name="storelistDB";
-    static final String tb_name="storelist";
+    //static final String db_name="storelistDB";
+    //static final String tb_name="storelist1";
     SQLiteDatabase db;
 
     String pic;
-    EditText storeinput;
+    EditText storeinput,et_type;
     Spinner  typeinput;
 
     @Override
@@ -41,56 +41,26 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        storeinput = (EditText)findViewById(R.id.storein);
-        typeinput =(Spinner)findViewById(R.id.typein);
+       storeinput = (EditText)findViewById(R.id.storein);
+       et_type = (EditText)findViewById(R.id.et_type);
+       typeinput =(Spinner)findViewById(R.id.typein);
 
 
-        String S =storeinput.getText().toString();//店家的店名輸入
-        String[] T = getResources().getStringArray(R.array.store_type);//店家類型輸入
-        int index=typeinput.getSelectedItemPosition();
+       //String S =storeinput.getText().toString();//店家的店名輸入
+        //String[] T = getResources().getStringArray(R.array.store_type);//店家類型輸入
+        //int index=typeinput.getSelectedItemPosition();
 
-        db=openOrCreateDatabase(db_name,Context.MODE_PRIVATE,null);
-        String createTable="CREATE TABLE IF NOT EXISTS " +
-                tb_name+
-                "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                "store VARCHAR(32), " +
-                "type VARCHAR(16), " +
-                "picture VARCHAR(64))";
-        db.execSQL(createTable);
+        db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
 
-        //Cursor c=db.rawQuery("SELECT * FROM "+tb_name,null);
-/*
-        if(c.getCount()==0){
-
-        }*/
-        //addData(S,T[index],pic);
-/*
-        c =db.rawQuery("SELECT * FROM "+tb_name,null);
-
-
-        if(c.moveToFirst()){
-            String str ="總共有 "+c.getCount() +"筆資料\n";
-            str+="-----\n";
-
-            do {
-                str+="store:"+c.getString(0)+"\n";
-                str+="type:"+c.getString(1)+"\n";
-                str+="picture:"+c.getString(2)+"\n";
-                str+="-----\n";
-
-            }while (c.moveToNext());
+        try {
+            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type TEXT)";
+            db.execSQL(createTable);
+            Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
         }
-        */
-        db.close();
-    }
-    private void addData(String store,String type, String picture){
-        ContentValues cv =new ContentValues(3);
-        cv.put("store",store);
-        cv.put("type",type);
-        cv.put("picture",picture);
+        catch (Exception ex){Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();}
 
-        db.insert(tb_name,null,cv);
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permission, int[] grantResult) {
@@ -177,16 +147,29 @@ public class Menu extends AppCompatActivity {
         }
     }
 
+    protected void onDestroy(){
+        super.onDestroy();
+        db.execSQL("DROP TABLE storelist1");
+        db.close();
+        deleteDatabase("storelistDB");
+    }
     public void insert(View v) {
 
-        String storestr=storeinput.getText().toString().trim();
-        String  typestr=typeinput.getSelectedItem().toString();
-        addData(storestr,typestr,pic);
 
-        Toast.makeText(this,"新增成功"+storestr+typestr+pic,Toast.LENGTH_LONG);
+        ContentValues cv = new ContentValues();
+        cv.put("store",String.valueOf(storeinput));
+        cv.put("type",String.valueOf(et_type));
 
+        try{
+            db.insert("storelist1",null,cv);
 
+            Toast.makeText(getApplicationContext(),"新增店家成功",Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception ex){
+            Toast.makeText(getApplicationContext(),"新增店家失敗",Toast.LENGTH_SHORT).show();
+        }
 
+        finish();
     }
 
     private void myAlertDialog() {
@@ -198,7 +181,7 @@ public class Menu extends AppCompatActivity {
                 // 如果不做任何事情 就會直接關閉 對話方塊
             }
         };
-        ;
+
         MyAlertDialog.setNeutralButton("中間按鈕", OkClick);
         MyAlertDialog.setPositiveButton("左邊按鈕", OkClick);
         MyAlertDialog.setNegativeButton("右邊按鈕", OkClick);

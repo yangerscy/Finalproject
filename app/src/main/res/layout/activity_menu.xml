@@ -53,11 +53,23 @@
         app:layout_constraintTop_toTopOf="@+id/storename"
         app:layout_constraintVertical_bias="0.061" />
 
+    <EditText
+        android:id="@+id/et_type"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="36dp"
+        android:ems="10"
+        android:hint="請輸入店家類型"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/storetype"
+        app:layout_constraintStart_toEndOf="@+id/storetype" />
+
     <Spinner
         android:id="@+id/typein"
         android:layout_width="187dp"
         android:layout_height="44dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="136dp"
         android:entries="@array/store_type"
         app:layout_constraintEnd_toEndOf="@+id/storein"
         app:layout_constraintHorizontal_bias="1.0"
@@ -88,8 +100,8 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <FrameLayout
-        android:layout_width="368dp"
-        android:layout_height="281dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,8 +109,8 @@
 
         <ImageView
             android:id="@+id/storepicture"
-            android:layout_width="379dp"
-            android:layout_height="match_parent"
+            android:layout_width="340dp"
+            android:layout_height="253dp"
             app:srcCompat="@android:color/transparent" />
 
     </FrameLayout>
