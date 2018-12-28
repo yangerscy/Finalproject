@@ -115,7 +115,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                     setResult(RESULT_OK,listshow);
 
                     //       Toast.makeText(getApplicationContext(),c.getInt(1)+"",Toast.LENGTH_SHORT).show();
-                    
+
                     startActivity(listshow);
 
                 db.close();
