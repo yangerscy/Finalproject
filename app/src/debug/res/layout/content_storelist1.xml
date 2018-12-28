@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="店家名稱" />
+            android:hint="店家名稱"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,8 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="輸入店家類型" />
+            android:hint="輸入店家類型"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout

@@ -54,7 +54,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         bt_queryall.setOnClickListener(this);
         bt_update.setOnClickListener(this);
         bt_query.setOnClickListener(this);
-        bt_delete.setOnClickListener(this);
+        //bt_delete.setOnClickListener(this);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
