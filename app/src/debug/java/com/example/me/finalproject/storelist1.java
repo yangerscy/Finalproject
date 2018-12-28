@@ -125,37 +125,6 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                 break;
                 }
 
-                case R.id.bt_delete:{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(storelist1.this);
-                    builder.setTitle("確定刪除");
-                    builder.setMessage("確定要刪除"+et_store.getText()+"這家店家?");
-                    builder.setNeutralButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            try {
-                                db.delete("storelist1","_id="+String.valueOf(tv_UID.getText()),null);
-                                cursor=db.rawQuery("SELECT _id,_id|| '.'|| store store, type FROM storelist1",null);
-                                UpdateListView(cursor);
-                                Toast.makeText(getApplicationContext(),"刪除資料成功!",Toast.LENGTH_SHORT).show();
-                                tv_UID.setText("");
-                                et_store.setText("");
-                                et_type.setText("");
-                            }
-                            catch (Exception ex){
-                                Toast.makeText(getApplicationContext(),"資料刪除失敗!",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                    builder.show();
-                    break;
-                }
-
                 case R.id.bt_query:{
                     try{
                         cursor = db.rawQuery("SELECT _id, _id ||'.'|| store store,type FROM storelist1 WHERE type"+
