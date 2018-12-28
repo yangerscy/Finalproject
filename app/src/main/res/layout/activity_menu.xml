@@ -6,28 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Menu">
 
-    <Button
-        android:id="@+id/insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="insert"
-        android:text="完成"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="@+id/typein"
-        app:layout_constraintTop_toTopOf="@+id/button5"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/storetype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:text="店家類型:"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/typein"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/typein" />
-
     <TextView
         android:id="@+id/storename"
         android:layout_width="wrap_content"
@@ -53,6 +31,17 @@
         app:layout_constraintTop_toTopOf="@+id/storename"
         app:layout_constraintVertical_bias="0.061" />
 
+    <TextView
+        android:id="@+id/storetype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:text="店家類型:"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/typein"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/typein" />
+
     <Spinner
         android:id="@+id/typein"
         android:layout_width="187dp"
@@ -68,24 +57,48 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:onClick="onGet"
         android:text="拍照"
-        app:layout_constraintStart_toStartOf="@+id/storetype"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/storetype" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:onClick="onPick"
         android:text="自選圖片"
         app:layout_constraintBottom_toBottomOf="@+id/button5"
         app:layout_constraintEnd_toStartOf="@+id/insert"
         app:layout_constraintTop_toTopOf="@+id/button5"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:onClick="insert"
+        android:text="新增店家"
+        app:layout_constraintBottom_toBottomOf="@+id/button5"
+        app:layout_constraintEnd_toEndOf="@+id/typein"
+        app:layout_constraintTop_toTopOf="@+id/button5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="update"
+        android:text="更新店家"
+        app:layout_constraintBottom_toBottomOf="@+id/button5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/insert"
+        app:layout_constraintTop_toTopOf="@+id/button5" />
 
     <FrameLayout
         android:layout_width="wrap_content"

@@ -35,9 +35,12 @@ public class Menu extends AppCompatActivity {
     SQLiteDatabase db;
     Cursor cursor=null;
 
-    String pic,T;
+    String pic;
     EditText storeinput;
     Spinner  typeinput;
+
+    int ID;
+    String upstore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +48,9 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
        storeinput = (EditText)findViewById(R.id.storein);
-
        typeinput =(Spinner)findViewById(R.id.typein);
 
 
-       //String S =storeinput.getText().toString();//店家的店名輸入
-        //String[] T = getResources().getStringArray(R.array.store_type);//店家類型輸入
-        //int index=typeinput.getSelectedItemPosition();
 
         db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
 
@@ -63,6 +62,15 @@ public class Menu extends AppCompatActivity {
         catch (Exception ex){
             Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();
         }
+
+
+            Intent listshow = getIntent();
+            ID = listshow.getIntExtra("編號", 0);
+            upstore = listshow.getStringExtra("店家");
+            storeinput.setText(upstore);
+
+            Toast.makeText(getApplicationContext(),"傳輸成功",Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -150,6 +158,17 @@ public class Menu extends AppCompatActivity {
         } else {
             Toast.makeText(this, "沒有拍到店家照片", Toast.LENGTH_LONG).show();
         }
+        if(requestCode == RESULT_OK){
+            Intent listshow = getIntent();
+            ID = listshow.getIntExtra("編號", 0);
+            upstore = listshow.getStringExtra("店家");
+            storeinput.setText(upstore);
+
+            Toast.makeText(getApplicationContext(),"傳輸成功",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"傳輸失敗",Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -180,6 +199,27 @@ public class Menu extends AppCompatActivity {
         db.close();
         finish();
     }
+    protected void update(View v){
+
+
+        ContentValues cv = new ContentValues();
+        cv.put("store",storeinput.getText().toString());
+        String[] T = getResources().getStringArray(R.array.store_type);
+        int index=typeinput.getSelectedItemPosition();
+        cv.put("type",T[index]);
+
+
+        try{
+            db.update("storelist1",cv,"_id="+String.valueOf(ID),null);
+
+            Toast.makeText(getApplicationContext(),"update success",Toast.LENGTH_SHORT).show();
+
+        }
+        catch (Exception ex){
+            Toast.makeText(getApplicationContext(),"update error",Toast.LENGTH_SHORT).show();
+        }
+        finish();
+    }
 
     private void myAlertDialog() {
         AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
@@ -198,5 +238,5 @@ public class Menu extends AppCompatActivity {
 
     }
 
-}
 
+}

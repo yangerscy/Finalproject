@@ -33,20 +33,19 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
     ListView  lisv;
     ArrayAdapter<String> aa;
     SQLiteDatabase db;
-    TextView tv_UID;
-    EditText et_type,et_store;
+    TextView tv_UID,tv_store;
+    EditText et_type;
     Cursor cursor=null;
 
-    Button bt_update,bt_delete,bt_query,bt_queryall;
+    Button bt_update,bt_query,bt_queryall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storelist1);
 
-        et_store = (EditText)findViewById(R.id.et_store);
+        tv_store = (TextView)findViewById(R.id.tv_store);
         et_type = (EditText)findViewById(R.id.et_type);
         tv_UID=(TextView)findViewById(R.id.tv_UID);
-        //bt_delete=(Button)findViewById(R.id.bt_delete);
         bt_query=(Button)findViewById(R.id.bt_query);
         bt_queryall=(Button)findViewById(R.id.bt_queryall);
         bt_update=(Button)findViewById(R.id.bt_update);
@@ -54,7 +53,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         bt_queryall.setOnClickListener(this);
         bt_update.setOnClickListener(this);
         bt_query.setOnClickListener(this);
-        //bt_delete.setOnClickListener(this);
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -73,7 +72,8 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         }
         catch (Exception ex){
             Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_SHORT).show();
-            et_store.setText(ex.toString());
+            //for debug
+            tv_store.setText(ex.toString());
         }
 
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
@@ -88,18 +88,14 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-       Intent listshow = new Intent(this,Menu.class);
 
+        Cursor c = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE _id=" + id ,null);
 
-      Cursor c=db.rawQuery("SELECT * FROM storelist1 WHERE _id="+id,null);
+        c.moveToFirst();
+        tv_UID.setText(""+c.getInt(0)+".");
+        tv_store.setText(""+c.getString(1));
+        et_type.setText(""+c.getString(2));
 
-        Toast.makeText(getApplicationContext(),c.getInt(1)+"",Toast.LENGTH_SHORT).show();
-      //listshow.putExtra("SS",c.getString(1));
-      //listshow.putExtra("TT",c.getString(2));
-      /*et_store.setText(""+c.getInt(0));
-        et_type.setText(""+c.getInt(1));*/
-      db.close();
-        //startActivity(listshow);
     }
 
 
@@ -108,21 +104,32 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         try{
             switch (v.getId()){
                 case R.id.bt_update:{
-                    ContentValues cv = new ContentValues();
-                    cv.put("store",String.valueOf(et_store));
-                    cv.put("type",String.valueOf(et_type));
 
-                    try{
-                        db.update("storelist1",cv,"_id="+String.valueOf(tv_UID),null);
-                        cursor=db.rawQuery("SELECT _id, _id ||'.'|| store store,type FROM storelist1",null);
-                        UpdateListView(cursor);
-                        Toast.makeText(getApplicationContext(),"update success",Toast.LENGTH_SHORT).show();
 
-                    }
-                    catch (Exception ex){
-                        Toast.makeText(getApplicationContext(),"update error",Toast.LENGTH_SHORT).show();
-                    }
-                break;
+                    Intent listshow = new Intent(this,Menu.class);
+
+                    listshow.putExtra("編號",tv_UID.getText().toString());
+                    listshow.putExtra("店家",tv_store.getText().toString());
+
+                   // String upnum = tv_UID.getText().toString();
+                    //String upstore = tv_store.getText().toString();
+                    Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK,listshow);
+
+                   // listshow.putExtra("類型",et_type.getText().toString());
+
+                    //Intent listshow = new Intent(this,Menu.class);
+
+
+                    //     Cursor c=db.rawQuery("SELECT * FROM storelist1 WHERE _id="+id,null);
+
+                    //       Toast.makeText(getApplicationContext(),c.getInt(1)+"",Toast.LENGTH_SHORT).show();
+                    //listshow.putExtra("SS",c.getString(1));
+                    //listshow.putExtra("TT",c.getString(2));
+
+
+                    startActivity(listshow);
+                db.close();
                 }
 
                 case R.id.bt_query:{
@@ -181,12 +188,12 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
         c.moveToFirst();
         tv_UID.setText(""+c.getInt(0));
-        et_store.setText(""+c.getInt(1));
+        tv_store.setText(""+c.getString(1));
         et_type.setText(""+c.getString(2));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(storelist1.this);
         builder.setTitle("確定刪除");
-        builder.setMessage("確定要刪除"+et_store.getText()+"這家店家?");
+        builder.setMessage("確定要刪除"+tv_store.getText()+"這家店家?");
         builder.setNeutralButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -202,7 +209,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                     UpdateListView(cursor);
                     Toast.makeText(getApplicationContext(),"刪除資料成功!",Toast.LENGTH_SHORT).show();
                     tv_UID.setText("");
-                    et_store.setText("");
+                    tv_store.setText("");
                     et_type.setText("");
                 }
                 catch (Exception ex){
@@ -213,4 +220,5 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         builder.show();
         return true;
     }
+
 }
