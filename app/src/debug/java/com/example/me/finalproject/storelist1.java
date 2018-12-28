@@ -111,24 +111,13 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                     listshow.putExtra("編號",tv_UID.getText().toString());
                     listshow.putExtra("店家",tv_store.getText().toString());
 
-                   // String upnum = tv_UID.getText().toString();
-                    //String upstore = tv_store.getText().toString();
                     Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_SHORT).show();
                     setResult(RESULT_OK,listshow);
 
-                   // listshow.putExtra("類型",et_type.getText().toString());
-
-                    //Intent listshow = new Intent(this,Menu.class);
-
-
-                    //     Cursor c=db.rawQuery("SELECT * FROM storelist1 WHERE _id="+id,null);
-
                     //       Toast.makeText(getApplicationContext(),c.getInt(1)+"",Toast.LENGTH_SHORT).show();
-                    //listshow.putExtra("SS",c.getString(1));
-                    //listshow.putExtra("TT",c.getString(2));
-
-
+                    
                     startActivity(listshow);
+
                 db.close();
                 }
 
