@@ -46,7 +46,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         et_store = (EditText)findViewById(R.id.et_store);
         et_type = (EditText)findViewById(R.id.et_type);
         tv_UID=(TextView)findViewById(R.id.tv_UID);
-        bt_delete=(Button)findViewById(R.id.bt_delete);
+        //bt_delete=(Button)findViewById(R.id.bt_delete);
         bt_query=(Button)findViewById(R.id.bt_query);
         bt_queryall=(Button)findViewById(R.id.bt_queryall);
         bt_update=(Button)findViewById(R.id.bt_update);
