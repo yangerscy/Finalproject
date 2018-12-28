@@ -21,16 +21,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class storelist1 extends AppCompatActivity
-implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,View.OnClickListener
+implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnItemLongClickListener
 {
     String[] liststore = {} ;
     ListView  lisv;
@@ -45,6 +42,7 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storelist1);
+
         et_store = (EditText)findViewById(R.id.et_store);
         et_type = (EditText)findViewById(R.id.et_type);
         tv_UID=(TextView)findViewById(R.id.tv_UID);
@@ -63,27 +61,24 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,V
 
         lisv = (ListView)findViewById(R.id.lists);
         lisv.setOnItemClickListener(this);
- /*       aa= new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,liststore);
-        lisv.setAdapter(aa);
-        lisv.setOnItemClickListener(this);
         lisv.setOnItemLongClickListener(this);
 
-*/
         db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
 
         try {
-            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type TEXT)";
-            db.execSQL(createTable);
+            Cursor c=db.rawQuery("SELECT * FROM storelist1 ",null);
+            UpdateListView(c);
+
             Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
         }
-        catch (Exception ex){Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();}
+        catch (Exception ex){
+            Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_SHORT).show();
+            et_store.setText(ex.toString());
+        }
 
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
 
     }
-
-
-
 
     public  void newdata1 (View view){
        Intent newdata = new Intent(this,Menu.class);
@@ -94,22 +89,19 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,V
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
        Intent listshow = new Intent(this,Menu.class);
-      startActivity(listshow);
 
-      Cursor c=db.rawQuery("SELECT _id, store, type FROM storelist1 WHERE _id="+id,null);
-      c.moveToFirst();
-      tv_UID.setText(""+c.getInt(0));
-      et_store.setText(""+c.getInt(1));
-      et_type.setText(""+c.getInt(2));
 
+      Cursor c=db.rawQuery("SELECT * FROM storelist1 WHERE _id="+id,null);
+
+        Toast.makeText(getApplicationContext(),c.getInt(1)+"",Toast.LENGTH_SHORT).show();
+      //listshow.putExtra("SS",c.getString(1));
+      //listshow.putExtra("TT",c.getString(2));
+      /*et_store.setText(""+c.getInt(0));
+        et_type.setText(""+c.getInt(1));*/
+      db.close();
+        //startActivity(listshow);
     }
 
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        liststore[position] = (position+1) + ".";
-        aa.notifyDataSetChanged();
-        return true;
-    }
 
     @Override
     public void onClick(View v) {
@@ -201,9 +193,8 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,V
 
     protected void onDestroy(){
         super.onDestroy();
-        db.execSQL("DROP TABLE storelist1");
         db.close();
-        deleteDatabase("storelistDB");
+
     }
 
     public void UpdateListView(Cursor cursor){
@@ -213,5 +204,44 @@ implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener,V
                     new int[]{android.R.id.text1,android.R.id.text2},0 );
             lisv.setAdapter(adapter);
         }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Cursor c = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE _id=" + id ,null);
+
+        c.moveToFirst();
+        tv_UID.setText(""+c.getInt(0));
+        et_store.setText(""+c.getInt(1));
+        et_type.setText(""+c.getString(2));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(storelist1.this);
+        builder.setTitle("確定刪除");
+        builder.setMessage("確定要刪除"+et_store.getText()+"這家店家?");
+        builder.setNeutralButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    db.delete("storelist1","_id="+String.valueOf(tv_UID.getText()),null);
+                    cursor=db.rawQuery("SELECT _id,_id|| '.'|| store store, type FROM storelist1",null);
+                    UpdateListView(cursor);
+                    Toast.makeText(getApplicationContext(),"刪除資料成功!",Toast.LENGTH_SHORT).show();
+                    tv_UID.setText("");
+                    et_store.setText("");
+                    et_type.setText("");
+                }
+                catch (Exception ex){
+                    Toast.makeText(getApplicationContext(),"資料刪除失敗!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.show();
+        return true;
     }
 }

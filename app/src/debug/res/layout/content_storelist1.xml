@@ -20,10 +20,9 @@
 
         <TextView
             android:id="@+id/tv_UID"
-            android:layout_width="36dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20sp" />
+            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/et_store"
@@ -32,28 +31,27 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="店家名稱"
-            android:textSize="24sp" />
+            android:text="店家名稱" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="384dp"
         android:layout_height="0dp"
-        android:layout_marginStart="68dp"
         android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <EditText
             android:id="@+id/et_type"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="輸入店家類型"
-            android:textSize="24sp" />
+            android:text="輸入店家類型" />
     </LinearLayout>
 
     <LinearLayout
@@ -74,13 +72,6 @@
             android:text="修改" />
 
         <Button
-            android:id="@+id/bt_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="刪除" />
-
-        <Button
             android:id="@+id/bt_query"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,7 +89,7 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="384dp"
-        android:layout_height="319dp"
+        android:layout_height="365dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -106,7 +97,7 @@
         <ListView
             android:id="@+id/lists"
             android:layout_width="wrap_content"
-            android:layout_height="307dp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

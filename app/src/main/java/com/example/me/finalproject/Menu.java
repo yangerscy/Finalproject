@@ -17,9 +17,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.style.UpdateAppearance;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,9 +33,10 @@ public class Menu extends AppCompatActivity {
     //static final String db_name="storelistDB";
     //static final String tb_name="storelist1";
     SQLiteDatabase db;
+    Cursor cursor=null;
 
-    String pic;
-    EditText storeinput,et_type;
+    String pic,T;
+    EditText storeinput;
     Spinner  typeinput;
 
     @Override
@@ -42,7 +45,7 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
        storeinput = (EditText)findViewById(R.id.storein);
-       et_type = (EditText)findViewById(R.id.et_type);
+
        typeinput =(Spinner)findViewById(R.id.typein);
 
 
@@ -53,11 +56,13 @@ public class Menu extends AppCompatActivity {
         db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
 
         try {
-            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type TEXT)";
+            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type STRING)";
             db.execSQL(createTable);
             Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
         }
-        catch (Exception ex){Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();}
+        catch (Exception ex){
+            Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -147,28 +152,32 @@ public class Menu extends AppCompatActivity {
         }
     }
 
+
     protected void onDestroy(){
         super.onDestroy();
-        db.execSQL("DROP TABLE storelist1");
+        //db.execSQL("DROP TABLE storelist1");
         db.close();
-        deleteDatabase("storelistDB");
+    //    deleteDatabase("storelistDB");
     }
     public void insert(View v) {
 
 
         ContentValues cv = new ContentValues();
-        cv.put("store",String.valueOf(storeinput));
-        cv.put("type",String.valueOf(et_type));
+        cv.put("store",storeinput.getText().toString());
+        String[] T = getResources().getStringArray(R.array.store_type);
+        int index=typeinput.getSelectedItemPosition();
+        cv.put("type",T[index]);
 
         try{
             db.insert("storelist1",null,cv);
+
 
             Toast.makeText(getApplicationContext(),"新增店家成功",Toast.LENGTH_SHORT).show();
         }
         catch (Exception ex){
             Toast.makeText(getApplicationContext(),"新增店家失敗",Toast.LENGTH_SHORT).show();
         }
-
+        db.close();
         finish();
     }
 
