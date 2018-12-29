@@ -76,6 +76,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
             tv_store.setText(ex.toString());
         }
 
+
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
 
     }
@@ -96,6 +97,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         tv_store.setText(""+c.getString(1));
         et_type.setText(""+c.getString(2));
 
+
     }
 
 
@@ -105,20 +107,14 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
             switch (v.getId()){
                 case R.id.bt_update:{
 
-
                     Intent listshow = new Intent(this,Menu.class);
 
                     listshow.putExtra("編號",tv_UID.getText().toString());
                     listshow.putExtra("店家",tv_store.getText().toString());
-
-                    Toast.makeText(getApplicationContext(),"success",Toast.LENGTH_SHORT).show();
                     setResult(RESULT_OK,listshow);
-
-                    //       Toast.makeText(getApplicationContext(),c.getInt(1)+"",Toast.LENGTH_SHORT).show();
-
                     startActivity(listshow);
-
                 db.close();
+                break;
                 }
 
                 case R.id.bt_query:{
@@ -161,7 +157,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         db.close();
 
     }
-
+//更新ListView
     public void UpdateListView(Cursor cursor){
         if(cursor!= null && cursor.getCount() >0){
             SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_2,
@@ -170,7 +166,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
             lisv.setAdapter(adapter);
         }
     }
-
+//刪除店家
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         Cursor c = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE _id=" + id ,null);

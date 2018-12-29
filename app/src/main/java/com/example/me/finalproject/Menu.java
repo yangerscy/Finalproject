@@ -57,19 +57,11 @@ public class Menu extends AppCompatActivity {
         try {
             String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type STRING)";
             db.execSQL(createTable);
-            Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
         }
         catch (Exception ex){
             Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();
         }
-
-
-            Intent listshow = getIntent();
-            ID = listshow.getIntExtra("編號", 0);
-            upstore = listshow.getStringExtra("店家");
-            storeinput.setText(upstore);
-
-            Toast.makeText(getApplicationContext(),"傳輸成功",Toast.LENGTH_SHORT).show();
 
 
     }
@@ -141,7 +133,8 @@ public class Menu extends AppCompatActivity {
         pick.setType("image/*");
         startActivityForResult(pick,101);
     }
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data,Intent listshows) {
 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
@@ -158,10 +151,12 @@ public class Menu extends AppCompatActivity {
         } else {
             Toast.makeText(this, "沒有拍到店家照片", Toast.LENGTH_LONG).show();
         }
+        //get intent
         if(requestCode == RESULT_OK){
-            Intent listshow = getIntent();
-            ID = listshow.getIntExtra("編號", 0);
-            upstore = listshow.getStringExtra("店家");
+
+            Intent listview=getIntent();
+            ID = listview.getIntExtra("編號",0);
+            upstore = listview.getStringExtra("店家");
             storeinput.setText(upstore);
 
             Toast.makeText(getApplicationContext(),"傳輸成功",Toast.LENGTH_SHORT).show();
@@ -220,6 +215,7 @@ public class Menu extends AppCompatActivity {
         }
         finish();
     }
+
 
     private void myAlertDialog() {
         AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
