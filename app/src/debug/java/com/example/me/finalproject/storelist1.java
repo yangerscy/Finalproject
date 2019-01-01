@@ -93,7 +93,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         Cursor c = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE _id=" + id ,null);
 
         c.moveToFirst();
-        tv_UID.setText(""+c.getInt(0)+".");
+        tv_UID.setText(""+c.getInt(0));
         tv_store.setText(""+c.getString(1));
         et_type.setText(""+c.getString(2));
 
@@ -111,7 +111,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
                     listshow.putExtra("編號",tv_UID.getText().toString());
                     listshow.putExtra("店家",tv_store.getText().toString());
-                    setResult(RESULT_OK,listshow);
+                    //setResult(RESULT_OK,listshow);
                     startActivity(listshow);
                 db.close();
                 break;
@@ -135,8 +135,13 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                     break;
                 }
                 case R.id.bt_queryall:{
+                        try {
+                            db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
+                        }catch (Exception e){
+
+                        }
                         try{
-                            cursor = db.rawQuery("SELECT _id, _id ||'.'|| store store,type FROM storelist1",null);
+                            cursor = db.rawQuery("SELECT * FROM storelist1",null);
                             UpdateListView(cursor);
                             Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
 

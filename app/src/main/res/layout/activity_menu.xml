@@ -81,24 +81,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
         android:onClick="insert"
-        android:text="新增店家"
+        android:text="確定"
         app:layout_constraintBottom_toBottomOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="@+id/typein"
         app:layout_constraintTop_toTopOf="@+id/button5"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/buttom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:onClick="update"
-        android:text="更新店家"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/insert"
-        app:layout_constraintTop_toTopOf="@+id/button5" />
 
     <FrameLayout
         android:layout_width="wrap_content"

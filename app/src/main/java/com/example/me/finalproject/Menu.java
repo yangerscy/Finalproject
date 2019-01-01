@@ -30,15 +30,14 @@ import java.io.IOException;
 public class Menu extends AppCompatActivity {
     Uri imgUri;
     ImageView imv;
-    //static final String db_name="storelistDB";
-    //static final String tb_name="storelist1";
+
     SQLiteDatabase db;
     Cursor cursor=null;
 
     String pic;
     EditText storeinput;
     Spinner  typeinput;
-
+    Boolean iffromlist =false;
     int ID;
     String upstore;
 
@@ -55,15 +54,22 @@ public class Menu extends AppCompatActivity {
         db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
 
         try {
-            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type STRING)";
+            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type STRING, blob VALUE_PIC)";
             db.execSQL(createTable);
          //   Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
         }
         catch (Exception ex){
             Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();
         }
-
-
+            try{
+                Intent it=getIntent();
+                String sid =it.getStringExtra("編號");
+                ID=Integer.parseInt(sid);
+                upstore=it.getStringExtra("店家");
+               iffromlist=true;
+            }catch (Exception e){
+                iffromlist=false;
+            }
     }
 
 
@@ -134,6 +140,7 @@ public class Menu extends AppCompatActivity {
         startActivityForResult(pick,101);
     }
 
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data,Intent listshows) {
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -151,19 +158,6 @@ public class Menu extends AppCompatActivity {
         } else {
             Toast.makeText(this, "沒有拍到店家照片", Toast.LENGTH_LONG).show();
         }
-        //get intent
-        if(requestCode == RESULT_OK){
-
-            Intent listview=getIntent();
-            ID = listview.getIntExtra("編號",0);
-            upstore = listview.getStringExtra("店家");
-            storeinput.setText(upstore);
-
-            Toast.makeText(getApplicationContext(),"傳輸成功",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"傳輸失敗",Toast.LENGTH_SHORT).show();
-        }
     }
 
 
@@ -171,10 +165,9 @@ public class Menu extends AppCompatActivity {
         super.onDestroy();
         //db.execSQL("DROP TABLE storelist1");
         db.close();
-    //    deleteDatabase("storelistDB");
+        //deleteDatabase("storelistDB");
     }
     public void insert(View v) {
-
 
         ContentValues cv = new ContentValues();
         cv.put("store",storeinput.getText().toString());
@@ -183,8 +176,11 @@ public class Menu extends AppCompatActivity {
         cv.put("type",T[index]);
 
         try{
-            db.insert("storelist1",null,cv);
-
+            if(iffromlist) {
+                db.update("storelist1",cv,"_id="+String.valueOf(ID),null);
+            }else {
+                db.insert("storelist1", null, cv);
+            }
 
             Toast.makeText(getApplicationContext(),"新增店家成功",Toast.LENGTH_SHORT).show();
         }
@@ -194,28 +190,6 @@ public class Menu extends AppCompatActivity {
         db.close();
         finish();
     }
-    protected void update(View v){
-
-
-        ContentValues cv = new ContentValues();
-        cv.put("store",storeinput.getText().toString());
-        String[] T = getResources().getStringArray(R.array.store_type);
-        int index=typeinput.getSelectedItemPosition();
-        cv.put("type",T[index]);
-
-
-        try{
-            db.update("storelist1",cv,"_id="+String.valueOf(ID),null);
-
-            Toast.makeText(getApplicationContext(),"update success",Toast.LENGTH_SHORT).show();
-
-        }
-        catch (Exception ex){
-            Toast.makeText(getApplicationContext(),"update error",Toast.LENGTH_SHORT).show();
-        }
-        finish();
-    }
-
 
     private void myAlertDialog() {
         AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
