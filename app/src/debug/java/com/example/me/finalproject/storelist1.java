@@ -54,8 +54,6 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         bt_update.setOnClickListener(this);
         bt_query.setOnClickListener(this);
 
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         lisv = (ListView)findViewById(R.id.lists);
@@ -100,7 +98,6 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
     }
 
-
     @Override
     public void onClick(View v) {
         try{
@@ -119,15 +116,11 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
                 case R.id.bt_query:{
                     try{
-                        cursor = db.rawQuery("SELECT _id, _id ||'.'|| store store,type FROM storelist1 WHERE type"+
+                        cursor = db.rawQuery("SELECT * FROM storelist1 WHERE type"+
                                 String.valueOf(et_type.getText()),null);
                         UpdateListView(cursor);
-                        Cursor c=db.rawQuery("SELECT _id. store . tpye FROM storelist1 WHERE store="+
-                                String.valueOf(et_type.getText()),null);
-                        c.moveToFirst();
-                        et_type.setText(""+c.getInt(0));
-                        Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
 
+                        Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
                     }
                     catch (Exception ex){
                         Toast.makeText(getApplicationContext(),"query error",Toast.LENGTH_SHORT).show();
