@@ -36,7 +36,7 @@ public class Menu extends AppCompatActivity {
     SQLiteDatabase db;
    // Cursor cursor=null;
 
-    Bitmap pic;
+    Bitmap pic=null;
     EditText storeinput;
     Spinner  typeinput;
     Boolean iffromlist =false;
@@ -169,6 +169,7 @@ public class Menu extends AppCompatActivity {
         db.close();
         //deleteDatabase("storelistDB");
     }
+
     public void insert(View v) {
 
         ContentValues cv = new ContentValues();
@@ -185,13 +186,20 @@ public class Menu extends AppCompatActivity {
         String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
 
         //放img進去SQLite
-        cv.put("image", base64);
-
+        if(pic==null) {
+            cv.put("image","404 pic not found");
+        }
+        else{
+            cv.put("image", base64);
+        }
         try{
             if(iffromlist) {
                 db.update("storelist1",cv,"_id="+String.valueOf(ID),null);
             }else {
+
+
                 db.insert("storelist1", null, cv);
+
             }
 
             Toast.makeText(getApplicationContext(),"新增店家成功",Toast.LENGTH_SHORT).show();
