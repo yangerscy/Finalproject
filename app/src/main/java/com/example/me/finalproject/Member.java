@@ -1,5 +1,7 @@
 package com.example.me.finalproject;
 
+import android.graphics.BitmapFactory;
+
 public class Member {
     private int id;
     private int image;
@@ -39,4 +41,5 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
 }
