@@ -18,6 +18,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.style.UpdateAppearance;
+import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class Menu extends AppCompatActivity {
@@ -32,9 +34,9 @@ public class Menu extends AppCompatActivity {
     ImageView imv;
 
     SQLiteDatabase db;
-    Cursor cursor=null;
+   // Cursor cursor=null;
 
-    String pic;
+    Bitmap pic;
     EditText storeinput;
     Spinner  typeinput;
     Boolean iffromlist =false;
@@ -54,7 +56,7 @@ public class Menu extends AppCompatActivity {
         db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
 
         try {
-            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type STRING, blob VALUE_PIC)";
+            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type STRING, image VALUE_PIC)";
             db.execSQL(createTable);
          //   Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
         }
@@ -114,9 +116,9 @@ public class Menu extends AppCompatActivity {
             Toast.makeText(this,"無法讀取圖片",Toast.LENGTH_LONG).show();
             return;
         }
-        pic=bmp.toString();
-        imv.setImageBitmap(bmp);//取圖
 
+        imv.setImageBitmap(bmp);//取圖
+            pic=bmp;
     }
 
     private void savePhoto() {
@@ -141,7 +143,7 @@ public class Menu extends AppCompatActivity {
     }
 
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data,Intent listshows) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
@@ -174,6 +176,16 @@ public class Menu extends AppCompatActivity {
         String[] T = getResources().getStringArray(R.array.store_type);
         int index=typeinput.getSelectedItemPosition();
         cv.put("type",T[index]);
+
+        // 先把 bitmap 轉成 byte
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        pic.compress(Bitmap.CompressFormat.JPEG, 100, stream );
+        byte bytes[] = stream.toByteArray();
+        // 把byte變成base64
+        String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+        //放img進去SQLite
+        cv.put("image", base64);
 
         try{
             if(iffromlist) {
