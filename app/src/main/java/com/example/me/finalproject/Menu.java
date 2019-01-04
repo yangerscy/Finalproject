@@ -34,15 +34,15 @@ public class Menu extends AppCompatActivity {
     ImageView imv;
 
     SQLiteDatabase db;
-    Cursor cursor=null;
+   // Cursor cursor=null;
 
-    String pic;
+    Bitmap pic;
     EditText storeinput;
     Spinner  typeinput;
     Boolean iffromlist =false;
     int ID;
     String upstore;
-    Bitmap bmp = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,16 +102,12 @@ public class Menu extends AppCompatActivity {
         imv = findViewById(R.id.storepicture);
        iw = options.outWidth;
         ih = options.outHeight;
-        //獲得圖片的寬高
         vw = imv.getWidth();
         vh = imv.getHeight();
-
         int scaleFactor = Math.min(iw/vw,ih/vh);
         options.inJustDecodeBounds = false;
         options.inSampleSize = scaleFactor;
-
-
-
+        Bitmap bmp = null;
         try {
             bmp = BitmapFactory.decodeStream(
                     getContentResolver().openInputStream(imgUri),null,options);
@@ -121,10 +117,8 @@ public class Menu extends AppCompatActivity {
             return;
         }
 
-        //取圖
-        imv.setImageBitmap(bmp);
-        //pic = bmp.toString();
-
+        imv.setImageBitmap(bmp);//取圖
+            pic=bmp;
     }
 
     private void savePhoto() {
@@ -149,7 +143,7 @@ public class Menu extends AppCompatActivity {
     }
 
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data,Intent listshows) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
@@ -185,13 +179,12 @@ public class Menu extends AppCompatActivity {
 
         // 先把 bitmap 轉成 byte
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream );
+        pic.compress(Bitmap.CompressFormat.JPEG, 100, stream );
         byte bytes[] = stream.toByteArray();
         // 把byte變成base64
         String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
 
         //放img進去SQLite
-
         cv.put("image", base64);
 
         try{
@@ -226,5 +219,6 @@ public class Menu extends AppCompatActivity {
         MyAlertDialog.show();
 
     }
+
 
 }

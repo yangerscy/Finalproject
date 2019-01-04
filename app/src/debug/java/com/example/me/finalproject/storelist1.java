@@ -130,11 +130,12 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                 case R.id.bt_queryall:{
                         try {
                             db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
+                            Toast.makeText(getApplicationContext()," success",Toast.LENGTH_SHORT).show();
                         }catch (Exception e){
 
                         }
                         try{
-                            cursor = db.rawQuery("SELECT * FROM storelist1",null);
+                            cursor = db.rawQuery("SELECT store,type FROM storelist1",null);
                             UpdateListView(cursor);
                             Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
 
