@@ -18,6 +18,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.style.UpdateAppearance;
+import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class Menu extends AppCompatActivity {
@@ -40,7 +42,7 @@ public class Menu extends AppCompatActivity {
     Boolean iffromlist =false;
     int ID;
     String upstore;
-
+    Bitmap bmp = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,7 @@ public class Menu extends AppCompatActivity {
         db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
 
         try {
-            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type STRING, blob VALUE_PIC)";
+            String createTable = "CREATE TABLE storelist1(_id INTEGER PRIMARY KEY, store TEXT,type STRING, image VALUE_PIC)";
             db.execSQL(createTable);
          //   Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
         }
@@ -100,12 +102,16 @@ public class Menu extends AppCompatActivity {
         imv = findViewById(R.id.storepicture);
        iw = options.outWidth;
         ih = options.outHeight;
+        //獲得圖片的寬高
         vw = imv.getWidth();
         vh = imv.getHeight();
+
         int scaleFactor = Math.min(iw/vw,ih/vh);
         options.inJustDecodeBounds = false;
         options.inSampleSize = scaleFactor;
-        Bitmap bmp = null;
+
+
+
         try {
             bmp = BitmapFactory.decodeStream(
                     getContentResolver().openInputStream(imgUri),null,options);
@@ -114,8 +120,10 @@ public class Menu extends AppCompatActivity {
             Toast.makeText(this,"無法讀取圖片",Toast.LENGTH_LONG).show();
             return;
         }
-        pic=bmp.toString();
-        imv.setImageBitmap(bmp);//取圖
+
+        //取圖
+        imv.setImageBitmap(bmp);
+        //pic = bmp.toString();
 
     }
 
@@ -175,6 +183,17 @@ public class Menu extends AppCompatActivity {
         int index=typeinput.getSelectedItemPosition();
         cv.put("type",T[index]);
 
+        // 先把 bitmap 轉成 byte
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, stream );
+        byte bytes[] = stream.toByteArray();
+        // 把byte變成base64
+        String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+        //放img進去SQLite
+
+        cv.put("image", base64);
+
         try{
             if(iffromlist) {
                 db.update("storelist1",cv,"_id="+String.valueOf(ID),null);
@@ -207,6 +226,5 @@ public class Menu extends AppCompatActivity {
         MyAlertDialog.show();
 
     }
-
 
 }
