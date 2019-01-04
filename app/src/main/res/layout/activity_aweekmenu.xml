@@ -7,154 +7,154 @@
     tools:context=".aweekmenu">
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/sunl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="58dp"
         android:text="午餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button9"
-        app:layout_constraintStart_toEndOf="@+id/button9"
-        app:layout_constraintTop_toTopOf="@+id/button9"
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintStart_toEndOf="@+id/sunday"
+        app:layout_constraintTop_toTopOf="@+id/sunday"
         app:layout_constraintVertical_bias="0.517" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/sund"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="80dp"
         android:text="晚餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView24"
+        app:layout_constraintBottom_toBottomOf="@+id/sunl"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView24"
+        app:layout_constraintTop_toTopOf="@+id/sunl"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/monl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="58dp"
         android:text="午餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/monday"
+        app:layout_constraintStart_toEndOf="@+id/monday"
+        app:layout_constraintTop_toTopOf="@+id/monday"
         app:layout_constraintVertical_bias="0.551" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/mond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="晚餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView22"
-        app:layout_constraintEnd_toEndOf="@+id/textView25"
-        app:layout_constraintTop_toTopOf="@+id/textView22"
+        app:layout_constraintBottom_toBottomOf="@+id/monl"
+        app:layout_constraintEnd_toEndOf="@+id/sund"
+        app:layout_constraintTop_toTopOf="@+id/monl"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/tuel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="58dp"
         android:text="午餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toBottomOf="@+id/tuesday"
+        app:layout_constraintStart_toEndOf="@+id/tuesday"
+        app:layout_constraintTop_toTopOf="@+id/tuesday"
         app:layout_constraintVertical_bias="0.551" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/tued"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:text="晚餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView20"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
-        app:layout_constraintTop_toTopOf="@+id/textView20"
+        app:layout_constraintBottom_toBottomOf="@+id/tuel"
+        app:layout_constraintEnd_toEndOf="@+id/mond"
+        app:layout_constraintTop_toTopOf="@+id/tuel"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/wedl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="58dp"
         android:text="午餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toBottomOf="@+id/wednesday"
+        app:layout_constraintStart_toEndOf="@+id/wednesday"
+        app:layout_constraintTop_toTopOf="@+id/wednesday"
         app:layout_constraintVertical_bias="0.551" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/wedd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="晚餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView18"
-        app:layout_constraintEnd_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toTopOf="@+id/textView18"
+        app:layout_constraintBottom_toBottomOf="@+id/wedl"
+        app:layout_constraintEnd_toEndOf="@+id/tued"
+        app:layout_constraintTop_toTopOf="@+id/wedl"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/thul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="58dp"
         android:text="午餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button4"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toBottomOf="@+id/thursday"
+        app:layout_constraintStart_toEndOf="@+id/thursday"
+        app:layout_constraintTop_toTopOf="@+id/thursday"
         app:layout_constraintVertical_bias="0.551" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/thud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="晚餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintEnd_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView16"
+        app:layout_constraintBottom_toBottomOf="@+id/thul"
+        app:layout_constraintEnd_toEndOf="@+id/wedd"
+        app:layout_constraintTop_toTopOf="@+id/thul"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/fril"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="58dp"
         android:text="午餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button6"
-        app:layout_constraintStart_toEndOf="@+id/button6"
-        app:layout_constraintTop_toTopOf="@+id/button6"
+        app:layout_constraintBottom_toBottomOf="@+id/friday"
+        app:layout_constraintStart_toEndOf="@+id/friday"
+        app:layout_constraintTop_toTopOf="@+id/friday"
         app:layout_constraintVertical_bias="0.551" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/frid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="晚餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintEnd_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView14"
+        app:layout_constraintBottom_toBottomOf="@+id/fril"
+        app:layout_constraintEnd_toEndOf="@+id/thud"
+        app:layout_constraintTop_toTopOf="@+id/fril"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/satd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="晚餐"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toTopOf="@+id/textView12"
+        app:layout_constraintBottom_toBottomOf="@+id/satl"
+        app:layout_constraintEnd_toEndOf="@+id/frid"
+        app:layout_constraintTop_toTopOf="@+id/satl"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -167,6 +167,19 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/satl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginBottom="16dp"
+        android:text="午餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/saturday"
+        app:layout_constraintStart_toEndOf="@+id/saturday"
+        app:layout_constraintTop_toTopOf="@+id/saturday"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/makeweek"
@@ -183,7 +196,7 @@
         app:layout_constraintVertical_bias="0.75" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/monday"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -193,10 +206,10 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toBottomOf="@+id/sunday" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/tuesday"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -206,10 +219,10 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/monday" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/wednesday"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -219,10 +232,10 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/tuesday" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/thursday"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -232,10 +245,10 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/wednesday" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/friday"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -245,10 +258,10 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/thursday" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/saturday"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -258,10 +271,10 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/friday" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/sunday"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -272,18 +285,5 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
-        android:layout_marginBottom="16dp"
-        android:text="午餐"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button8"
-        app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toTopOf="@+id/button8"
-        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
