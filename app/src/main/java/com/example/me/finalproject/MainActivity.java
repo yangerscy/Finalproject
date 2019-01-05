@@ -1,5 +1,8 @@
 package com.example.me.finalproject;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Build;
@@ -12,10 +15,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     final Handler handler = new Handler();
-    private final  int SPLASH_DISPLAY_LENGY = 1000;
+    private final int SPLASH_DISPLAY_LENGY = 1000;
+
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +29,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        ImageView backet =findViewById(R.id.backet);
+        ImageView backet = findViewById(R.id.backet);
         backet.setScaleType(ImageView.ScaleType.CENTER);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mainintent = new Intent(MainActivity.this,Main2Activity.class);
+                Intent mainintent = new Intent(MainActivity.this, Main2Activity.class);
                 MainActivity.this.startActivity(mainintent);
                 MainActivity.this.finish();
             }
-        },SPLASH_DISPLAY_LENGY);
+        }, SPLASH_DISPLAY_LENGY);
     }
 
-  }
+
+}
 
