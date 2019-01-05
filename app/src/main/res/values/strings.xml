@@ -23,6 +23,9 @@
         <item>便當</item>
         <item>餐廳</item>
         <item>麵館</item>
+        <item>速食店</item>
+        <item></item>
+        <item>其他</item>
     </string-array>
 
     <string-array name="foodstreet_stores">
