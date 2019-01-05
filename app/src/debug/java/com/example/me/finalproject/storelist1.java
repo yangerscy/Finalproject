@@ -69,12 +69,12 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
             Cursor c=db.rawQuery("SELECT * FROM storelist1 ",null);
             UpdateListView(c);
 
-            Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"資料庫開啟",Toast.LENGTH_SHORT).show();
         }
         catch (Exception ex){
-            Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_SHORT).show();
             //for debug
-            tv_store.setText(ex.toString());
+            //tv_store.setText(ex.toString());
         }
         try {
             Intent qu = getIntent();
@@ -99,7 +99,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
         }
         catch (Exception ex){
-            Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
         }
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
 
@@ -149,10 +149,10 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                         cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+et_type.getText().toString()+"'" ,null);
                         UpdateListView(cursor);
 
-                        Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
                     }
                     catch (Exception ex){
-                        Toast.makeText(getApplicationContext(),"query error",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"query error",Toast.LENGTH_SHORT).show();
                     }
                     break;
                 }
@@ -166,17 +166,17 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                         try{
                             cursor = db.rawQuery("SELECT  _id,store,type FROM storelist1",null);
                             UpdateListView(cursor);
-                            Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
 
                         }
                         catch (Exception ex){
-                            Toast.makeText(getApplicationContext(),"query error",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),"query error",Toast.LENGTH_SHORT).show();
                         }
                     break;
                 }
             }
         }catch (Exception ex){
-            Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -226,7 +226,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                     et_type.setText("");
                 }
                 catch (Exception ex){
-                    Toast.makeText(getApplicationContext(),"資料刪除失敗!",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"資料刪除失敗!",Toast.LENGTH_SHORT).show();
                 }
             }
         });
