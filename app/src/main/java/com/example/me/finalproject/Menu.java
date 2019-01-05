@@ -79,7 +79,6 @@ public class Menu extends AppCompatActivity {
         }
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permission, int[] grantResult) {
         if (requestCode == 200) {
@@ -90,7 +89,6 @@ public class Menu extends AppCompatActivity {
             }
         }
     }
-
 
     void showImg(){
         int iw,ih,vw,vh;

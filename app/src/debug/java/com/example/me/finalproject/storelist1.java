@@ -36,7 +36,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
     TextView tv_UID,tv_store;
     EditText et_type;
     Cursor cursor=null;
-
+    int num;
     Button bt_update,bt_query,bt_queryall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +73,23 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
             //for debug
             tv_store.setText(ex.toString());
         }
+        try {
+            Intent qu = getIntent();
+            String sid =qu.getStringExtra("sel");
+            num=Integer.parseInt(sid);
+            et_type.setText(num);
+            if(num ==1){
+                cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"小吃"+"'" ,null);
+                UpdateListView(cursor);
+                Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (Exception ex){
 
-
+        }
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
 
     }
