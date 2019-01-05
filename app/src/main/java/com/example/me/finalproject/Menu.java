@@ -31,7 +31,7 @@ import java.io.IOException;
 
 public class Menu extends AppCompatActivity {
     Uri imgUri;
-    ImageView imv;
+    ImageView imv=null;
 
     SQLiteDatabase db;
    // Cursor cursor=null;
@@ -118,7 +118,8 @@ public class Menu extends AppCompatActivity {
         }
 
         imv.setImageBitmap(bmp);//取圖
-            pic=bmp;
+        pic=bmp;
+
     }
 
     private void savePhoto() {
@@ -185,24 +186,21 @@ public class Menu extends AppCompatActivity {
         // 把byte變成base64
         String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
 
+
+
         //放img進去SQLite
-        if(pic==null) {
-            cv.put("image","404 pic not found");
-        }
-        else{
-            cv.put("image", base64);
-        }
+          cv.put("image", base64);
+
+
         try{
             if(iffromlist) {
                 db.update("storelist1",cv,"_id="+String.valueOf(ID),null);
-            }else {
-
-
-                db.insert("storelist1", null, cv);
-
+                Toast.makeText(getApplicationContext(),"更改店家成功",Toast.LENGTH_SHORT).show();
             }
-
-            Toast.makeText(getApplicationContext(),"新增店家成功",Toast.LENGTH_SHORT).show();
+            else {
+                db.insert("storelist1", null, cv);
+                Toast.makeText(getApplicationContext(),"新增店家成功",Toast.LENGTH_SHORT).show();
+            }
         }
         catch (Exception ex){
             Toast.makeText(getApplicationContext(),"新增店家失敗",Toast.LENGTH_SHORT).show();
@@ -227,6 +225,5 @@ public class Menu extends AppCompatActivity {
         MyAlertDialog.show();
 
     }
-
 
 }

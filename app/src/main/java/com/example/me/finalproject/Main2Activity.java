@@ -105,8 +105,7 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.menub) {
-            Intent menu1 = new Intent(Main2Activity.this, com.example.me.finalproject.Menu
-                    .class);
+            Intent menu1 = new Intent(Main2Activity.this, com.example.me.finalproject.Menu.class);
             Main2Activity.this.startActivity(menu1);
         } else if (id == R.id.storelist) {
             Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
