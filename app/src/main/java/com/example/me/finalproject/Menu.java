@@ -189,7 +189,7 @@ public class Menu extends AppCompatActivity {
 
 
         //放img進去SQLite
-          cv.put("image", base64);
+        cv.put("image", base64);
 
 
         try{
