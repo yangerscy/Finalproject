@@ -56,7 +56,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         bt_queryall.setOnClickListener(this);
         bt_update.setOnClickListener(this);
         bt_query.setOnClickListener(this);
-        Toast.makeText(getApplicationContext(),"長按可刪除店家",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"長按可刪除店家",Toast.LENGTH_SHORT).show();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
