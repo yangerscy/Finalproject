@@ -87,7 +87,11 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        try{
+            db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
+        }catch (Exception e){
 
+        }
         Cursor c = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE _id=" + id ,null);
 
         c.moveToFirst();
