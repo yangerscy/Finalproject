@@ -7,6 +7,157 @@
     tools:context=".aweekmenu">
 
     <TextView
+        android:id="@+id/sunl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:text="午餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/sunday"
+        app:layout_constraintStart_toEndOf="@+id/sunday"
+        app:layout_constraintTop_toTopOf="@+id/sunday"
+        app:layout_constraintVertical_bias="0.517" />
+
+    <TextView
+        android:id="@+id/sund"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="80dp"
+        android:text="晚餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/sunl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sunl"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/monl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:text="午餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/monday"
+        app:layout_constraintStart_toEndOf="@+id/monday"
+        app:layout_constraintTop_toTopOf="@+id/monday"
+        app:layout_constraintVertical_bias="0.551" />
+
+    <TextView
+        android:id="@+id/mond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="晚餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/monl"
+        app:layout_constraintEnd_toEndOf="@+id/sund"
+        app:layout_constraintTop_toTopOf="@+id/monl"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tuel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:text="午餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tuesday"
+        app:layout_constraintStart_toEndOf="@+id/tuesday"
+        app:layout_constraintTop_toTopOf="@+id/tuesday"
+        app:layout_constraintVertical_bias="0.551" />
+
+    <TextView
+        android:id="@+id/tued"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="晚餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tuel"
+        app:layout_constraintEnd_toEndOf="@+id/mond"
+        app:layout_constraintTop_toTopOf="@+id/tuel"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/wedl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:text="午餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/wednesday"
+        app:layout_constraintStart_toEndOf="@+id/wednesday"
+        app:layout_constraintTop_toTopOf="@+id/wednesday"
+        app:layout_constraintVertical_bias="0.551" />
+
+    <TextView
+        android:id="@+id/wedd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="晚餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/wedl"
+        app:layout_constraintEnd_toEndOf="@+id/tued"
+        app:layout_constraintTop_toTopOf="@+id/wedl"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/thul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:text="午餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/thursday"
+        app:layout_constraintStart_toEndOf="@+id/thursday"
+        app:layout_constraintTop_toTopOf="@+id/thursday"
+        app:layout_constraintVertical_bias="0.551" />
+
+    <TextView
+        android:id="@+id/thud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="晚餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/thul"
+        app:layout_constraintEnd_toEndOf="@+id/wedd"
+        app:layout_constraintTop_toTopOf="@+id/thul"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/fril"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:text="午餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/friday"
+        app:layout_constraintStart_toEndOf="@+id/friday"
+        app:layout_constraintTop_toTopOf="@+id/friday"
+        app:layout_constraintVertical_bias="0.551" />
+
+    <TextView
+        android:id="@+id/frid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="晚餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fril"
+        app:layout_constraintEnd_toEndOf="@+id/thud"
+        app:layout_constraintTop_toTopOf="@+id/fril"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/satd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="晚餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/satl"
+        app:layout_constraintEnd_toEndOf="@+id/frid"
+        app:layout_constraintTop_toTopOf="@+id/satl"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +167,19 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/satl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginBottom="16dp"
+        android:text="午餐"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/saturday"
+        app:layout_constraintStart_toEndOf="@+id/saturday"
+        app:layout_constraintTop_toTopOf="@+id/saturday"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/makeweek"
@@ -31,25 +195,95 @@
         app:layout_constraintTop_toTopOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.75" />
 
-    <ScrollView
-        android:layout_width="368dp"
-        android:layout_height="431dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/monday"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedbutton"
+        android:text="一"
+        android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/sunday" />
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="280dp"
-            tools:layout_editor_absoluteY="112dp" />
-    </ScrollView>
+    <Button
+        android:id="@+id/tuesday"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedbutton"
+        android:text="二"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monday" />
+
+    <Button
+        android:id="@+id/wednesday"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedbutton"
+        android:text="三"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tuesday" />
+
+    <Button
+        android:id="@+id/thursday"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedbutton"
+        android:text="四"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wednesday" />
+
+    <Button
+        android:id="@+id/friday"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedbutton"
+        android:text="五"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thursday" />
+
+    <Button
+        android:id="@+id/saturday"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/roundedbutton"
+        android:text="六"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friday" />
+
+    <Button
+        android:id="@+id/sunday"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/roundedbutton"
+        android:text="日"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 </android.support.constraint.ConstraintLayout>

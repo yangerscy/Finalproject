@@ -65,19 +65,7 @@ public class foodstreet extends AppCompatActivity
                 .class);
         foodstreet.this.startActivity(foodstreetmap);
     }
-    public  void foodstreetradon (View view){
-        int getlist=0;
-        String randomlist []={"光華飯包","藍迪義大利麵","光華垃圾面","伍柒玖牛肉麵","佐賀丼飯","玖伍牛肉麵","佐藤精肉店","楊記大餛飩","麵足飯飽便當"
-                ,"鼎吉粥棧","老德記牛肉麵","I'm PASTA","馬祖麵館","咖食堂","銀記牛肉麵","印度風咖哩","喬喜蛋炒飯","好滋味越南美食"};
-        radon = findViewById(R.id.ranfonfoodstreet);
-        radontxv = findViewById(R.id.foodstradon);
 
-        Random x = new Random();
-        getlist = x.nextInt(18);
-
-        radontxv.setText(String.valueOf("等等吃~"+randomlist[getlist]));
-
-    }
 
     private class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
         private Context context;
@@ -129,6 +117,19 @@ public class foodstreet extends AppCompatActivity
                 textName = (TextView) itemView.findViewById(R.id.textName);
             }
         }
+    }
+    public  void foodstreetradon (View view){
+        int getlist=0;
+        String randomlist []={"光華飯包","藍迪義大利麵","光華垃圾面","伍柒玖牛肉麵","佐賀丼飯","玖伍牛肉麵","佐藤精肉店","楊記大餛飩","麵足飯飽便當"
+                ,"鼎吉粥棧","老德記牛肉麵","I'm PASTA","馬祖麵館","咖食堂","銀記牛肉麵","印度風咖哩","喬喜蛋炒飯","好滋味越南美食"};
+        radon = findViewById(R.id.ranfonfoodstreet);
+        radontxv = findViewById(R.id.foodstradon);
+
+        Random x = new Random();
+        getlist = x.nextInt(18);
+
+        radontxv.setText(String.valueOf("等等吃~"+randomlist[getlist]));
+
     }
 }
 

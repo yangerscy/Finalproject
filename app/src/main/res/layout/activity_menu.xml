@@ -10,7 +10,7 @@
         android:id="@+id/storename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="40dp"
         android:layout_marginBottom="56dp"
         android:text="店名:"
         android:textSize="24dp"
@@ -35,7 +35,7 @@
         android:id="@+id/storetype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="40dp"
         android:text="店家類型:"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/typein"
@@ -57,21 +57,23 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:onClick="onGet"
         android:text="拍照"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/storetype"
         app:layout_constraintTop_toBottomOf="@+id/storetype" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
         android:onClick="onPick"
         android:text="自選圖片"
         app:layout_constraintBottom_toBottomOf="@+id/button5"
         app:layout_constraintEnd_toStartOf="@+id/insert"
+        app:layout_constraintStart_toEndOf="@+id/button5"
         app:layout_constraintTop_toTopOf="@+id/button5"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -79,21 +81,19 @@
         android:id="@+id/insert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
         android:onClick="insert"
         android:text="確定"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
+        app:layout_constraintBottom_toBottomOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="@+id/typein"
-        app:layout_constraintTop_toTopOf="@+id/button5"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/button7" />
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5">
+        app:layout_constraintEnd_toEndOf="@+id/insert"
+        app:layout_constraintStart_toStartOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/button7">
 
         <ImageView
             android:id="@+id/storepicture"
