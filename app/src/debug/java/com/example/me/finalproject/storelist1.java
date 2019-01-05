@@ -116,8 +116,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
                 case R.id.bt_query:{
                     try{
-                        cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type="+
-                                String.valueOf(et_type.getText()) ,null);
+                        cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+et_type.getText().toString()+"'" ,null);
                         UpdateListView(cursor);
 
                         Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
