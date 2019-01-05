@@ -51,7 +51,7 @@ public class Menu extends AppCompatActivity {
 
        storeinput = (EditText)findViewById(R.id.storein);
        typeinput =(Spinner)findViewById(R.id.typein);
-
+       imv=(ImageView)findViewById(R.id.storepicture);
 
 
         db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
@@ -79,7 +79,7 @@ public class Menu extends AppCompatActivity {
         if(iffromlist==true){
             storeinput.setText(upstore);
 
-            cursor = db.rawQuery("SELECT _id,image FROM storelist1 WHERE _id="+ID,null);
+            cursor = db.rawQuery("SELECT _id,image FROM storelist1 WHERE _id= '"+ID+"'",null);
             cursor.moveToFirst();
             byte bytes[] = Base64.decode(cursor.getString(1),Base64.DEFAULT);
             pic=BitmapFactory.decodeByteArray(bytes, 0, bytes.length);

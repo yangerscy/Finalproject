@@ -140,7 +140,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                     listshow.putExtra("店家",tv_store.getText().toString());
 
                     startActivity(listshow);
-                db.close();
+
                 break;
                 }
 
