@@ -88,7 +88,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
             }
         }
         catch (Exception ex){
-
+            Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
         }
         /*recyclerView.setAdapter(new MemberAdapter(this, memberList));*/
 
