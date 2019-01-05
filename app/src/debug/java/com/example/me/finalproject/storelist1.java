@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -135,6 +138,13 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
                     listshow.putExtra("編號",tv_UID.getText().toString());
                     listshow.putExtra("店家",tv_store.getText().toString());
+
+                    cursor = db.rawQuery("SELECT _id,image FROM storelist1 ",null);
+                    cursor.moveToFirst();
+                    byte bytes[] = Base64.decode(cursor.getString(1),Base64.DEFAULT);
+                    Bitmap pic;
+                    pic=BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    listshow.putExtra("照片",pic);
 
                     startActivity(listshow);
                 db.close();

@@ -42,7 +42,7 @@ public class Menu extends AppCompatActivity {
     Boolean iffromlist =false;
     int ID;
     String upstore;
-
+    Bitmap uppic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +69,7 @@ public class Menu extends AppCompatActivity {
                 String sid =it.getStringExtra("編號");
                 ID=Integer.parseInt(sid);
                 upstore=it.getStringExtra("店家");
+                //uppic=it.getStringExtra("照片");
                iffromlist=true;
         }
         catch (Exception e){
