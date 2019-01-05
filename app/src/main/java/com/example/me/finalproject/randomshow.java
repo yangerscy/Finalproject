@@ -47,8 +47,9 @@ public class randomshow extends AppCompatActivity {
             imv.setImageBitmap(pic);
         }
         catch (Exception ex){
+            /*
             foodstradon2.setText(ex.toString());
-            Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),ex.toString(),Toast.LENGTH_SHORT).show();*/
             //for debug
 
         }
@@ -71,7 +72,7 @@ public class randomshow extends AppCompatActivity {
         try {
             String createTable = "CREATE TABLE eattimes(_id INTEGER PRIMARY KEY, store TEXT,times INTEGER)";
             db.execSQL(createTable);
-            Toast.makeText(getApplicationContext(),"資料表完成",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"資料表完成",Toast.LENGTH_SHORT).show();
         }catch (Exception ex){
 
         }
