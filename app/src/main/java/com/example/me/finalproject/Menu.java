@@ -63,15 +63,20 @@ public class Menu extends AppCompatActivity {
         catch (Exception ex){
             Toast.makeText(getApplicationContext(),"資料庫開啟失敗",Toast.LENGTH_SHORT).show();
         }
-            try{
+
+        try{
                 Intent it=getIntent();
                 String sid =it.getStringExtra("編號");
                 ID=Integer.parseInt(sid);
                 upstore=it.getStringExtra("店家");
                iffromlist=true;
-            }catch (Exception e){
+        }
+        catch (Exception e){
                 iffromlist=false;
-            }
+        }
+        if(iffromlist==true){
+            storeinput.setText(upstore);
+        }
     }
 
 
@@ -184,19 +189,6 @@ public class Menu extends AppCompatActivity {
         String[] T = getResources().getStringArray(R.array.store_type);
         int index=typeinput.getSelectedItemPosition();
         cv.put("type",T[index]);
-
-        // 先把 bitmap 轉成 byte
-  /*      ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        pic.compress(Bitmap.CompressFormat.JPEG, 100, stream );
-        byte bytes[] = stream.toByteArray();
-        // 把byte變成base64
-        String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
-
-
-
-        //放img進去SQLite
-
-        cv.put("image", base64);*/
 
         if(pic==null){
             cv.put("image", "404");
