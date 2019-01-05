@@ -81,17 +81,20 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                 cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"小吃"+"'" ,null);
                 UpdateListView(cursor);
             }
-            if(inum ==2){
+            else if(inum ==2){
                 cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"自助餐"+"'" ,null);
                 UpdateListView(cursor);
             }
-            if(inum ==3){
+            else if(inum ==3){
                 cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"便當"+"'" ,null);
                 UpdateListView(cursor);
             }
-            if(inum ==4){
+            else if(inum ==4){
                 cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"麵館"+"'" ,null);
                 UpdateListView(cursor);
+            }
+            else{
+
             }
 
         }
