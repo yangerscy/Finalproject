@@ -105,7 +105,7 @@ public class aweekmenu extends AppCompatActivity {
 
 
        }catch (Exception e){
-           Toast.makeText(getApplicationContext(),"請建立店家",Toast.LENGTH_SHORT).show();
+           Toast.makeText(getApplicationContext(),"請建立四間以上店家",Toast.LENGTH_SHORT).show();
        }
 
     }
