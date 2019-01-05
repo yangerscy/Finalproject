@@ -33,8 +33,8 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
     ListView  lisv;
     ArrayAdapter<String> aa;
     SQLiteDatabase db;
-    TextView tv_UID,tv_store;
-    EditText et_type;
+    TextView tv_UID,tv_store,et_type;
+    //EditText et_type;
     Cursor cursor=null;
     String num;
     Button bt_update,bt_query,bt_queryall;
@@ -44,7 +44,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         setContentView(R.layout.activity_storelist1);
 
         tv_store = (TextView)findViewById(R.id.tv_store);
-        et_type = (EditText)findViewById(R.id.et_type);
+        et_type = (TextView)findViewById(R.id.et_type);
         tv_UID=(TextView)findViewById(R.id.tv_UID);
         bt_query=(Button)findViewById(R.id.bt_query);
         bt_queryall=(Button)findViewById(R.id.bt_queryall);
