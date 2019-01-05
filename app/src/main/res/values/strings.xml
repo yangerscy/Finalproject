@@ -21,8 +21,15 @@
         <item>小吃</item>
         <item>自助餐</item>
         <item>便當</item>
-        <item>餐廳</item>
         <item>麵館</item>
+        <item>餐廳</item>
+        <item>速食店</item>
+        <item>日式料理</item>+
+        <item>火鍋店</item>
+        <item>餃子館</item>
+        <item>素食</item>
+        <item>吃到飽</item>
+       <item>其他</item>
     </string-array>
 
     <string-array name="foodstreet_stores">
