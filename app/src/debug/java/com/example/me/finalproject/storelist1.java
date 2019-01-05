@@ -135,7 +135,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
 
                         }
                         try{
-                            cursor = db.rawQuery("SELECT store,type FROM storelist1",null);
+                            cursor = db.rawQuery("SELECT  _id,store,type FROM storelist1",null);
                             UpdateListView(cursor);
                             Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
 
