@@ -92,7 +92,7 @@ public class randomshow extends AppCompatActivity {
             ccv.put("times",ti);
             db.insert("eattimes",null,ccv);
             if(ti>=3) {
-                Toast.makeText(getApplicationContext(), "已經連續吃" + st + "" + ti+"次了，換點口味吧", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "已經連續吃" + st + "" + ti+"次了，換點口味吧", Toast.LENGTH_LONG).show();
             }
         }catch (Exception ex){
             db.execSQL("DELETE FROM eattimes");

@@ -220,22 +220,6 @@ public class Menu extends AppCompatActivity {
         db.close();
         finish();
     }
-
-    private void myAlertDialog() {
-        AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(this);
-        MyAlertDialog.setTitle("標題");
-        MyAlertDialog.setMessage("我是內容");
-        DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // 如果不做任何事情 就會直接關閉 對話方塊
-            }
-        };
-
-        MyAlertDialog.setNeutralButton("中間按鈕", OkClick);
-        MyAlertDialog.setPositiveButton("左邊按鈕", OkClick);
-        MyAlertDialog.setNegativeButton("右邊按鈕", OkClick);
-        MyAlertDialog.show();
-
-    }
+    
 
 }
