@@ -1,5 +1,6 @@
 package com.example.me.finalproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +10,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,6 +25,7 @@ public class aweekmenu extends AppCompatActivity {
     Integer count;
     Cursor c;
     TextView sunl,sund,monl,mond,tuel,tued,wedl,wedd,thul,thud,fril,frid,satl,satd;
+    Gson gson = new Gson();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +51,41 @@ public class aweekmenu extends AppCompatActivity {
         satl=(TextView)findViewById(R.id.satl);
         satd=(TextView)findViewById(R.id.satd);
         db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
+        try {
+            c = db.rawQuery("SELECT _id, list FROM weekmenu ", null);
+            c.moveToFirst();
+            ArrayList<String> ans;
+            String anslist;
+            anslist=c.getString(1);
+
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+             ans = gson.fromJson(anslist, type);
+
+            sunl.setText(ans.get(0));
+            sund.setText(ans.get(1));
+
+            monl.setText(ans.get(2));
+            mond.setText(ans.get(3));
+
+            tuel.setText(ans.get(4));
+            tued.setText(ans.get(5));
+
+            wedl.setText(ans.get(6));
+            wedd.setText(ans.get(7));
+
+            thul.setText(ans.get(8));
+            thud.setText(ans.get(9));
+
+            fril.setText(ans.get(10));
+            frid.setText(ans.get(11));
+
+            satl.setText(ans.get(12));
+            satd.setText(ans.get(13));
+
+        }catch (Exception e){
+            String a=e.toString();
+        }
+
 
     }
     public void cratelist(View view){
@@ -103,6 +147,21 @@ public class aweekmenu extends AppCompatActivity {
            satl.setText(ans.get(12));
            satd.setText(ans.get(13));
 
+           try {
+               String createTable = "CREATE TABLE weekmenu(_id INTEGER PRIMARY KEY, list TEXT)";
+               db.execSQL(createTable);
+           }catch (Exception e){
+
+           }
+
+
+
+           String inputString= gson.toJson(ans);
+
+           ContentValues ccv = new ContentValues();
+           ccv.put("list",inputString);
+           db.execSQL("DELETE FROM weekmenu");
+           db.insert("weekmenu",null,ccv);
 
        }catch (Exception e){
            Toast.makeText(getApplicationContext(),"請建立四間以上店家",Toast.LENGTH_SHORT).show();
