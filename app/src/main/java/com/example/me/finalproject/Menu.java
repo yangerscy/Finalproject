@@ -43,6 +43,7 @@ public class Menu extends AppCompatActivity {
     int ID;
     String upstore;
     Bitmap uppic;
+    Cursor cursor=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +70,7 @@ public class Menu extends AppCompatActivity {
                 String sid =it.getStringExtra("編號");
                 ID=Integer.parseInt(sid);
                 upstore=it.getStringExtra("店家");
-                //uppic=it.getStringExtra("照片");
+
                iffromlist=true;
         }
         catch (Exception e){
@@ -77,6 +78,13 @@ public class Menu extends AppCompatActivity {
         }
         if(iffromlist==true){
             storeinput.setText(upstore);
+
+            cursor = db.rawQuery("SELECT _id,image FROM storelist1 WHERE _id="+ID,null);
+            cursor.moveToFirst();
+            byte bytes[] = Base64.decode(cursor.getString(1),Base64.DEFAULT);
+            pic=BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+            imv.setImageBitmap(pic);
         }
     }
 
