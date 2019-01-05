@@ -156,7 +156,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
                 case R.id.bt_queryall:{
                         try {
                             db=openOrCreateDatabase("storelistDB",Context.MODE_PRIVATE,null);
-                            Toast.makeText(getApplicationContext()," success",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext()," 更新成功",Toast.LENGTH_SHORT).show();
                         }catch (Exception e){
 
                         }
