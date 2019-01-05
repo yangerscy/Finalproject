@@ -100,25 +100,31 @@ public class Menu extends AppCompatActivity {
             return;
         }
         imv = findViewById(R.id.storepicture);
-       iw = options.outWidth;
-        ih = options.outHeight;
-        vw = imv.getWidth();
-        vh = imv.getHeight();
-        int scaleFactor = Math.min(iw/vw,ih/vh);
-        options.inJustDecodeBounds = false;
-        options.inSampleSize = scaleFactor;
-        Bitmap bmp = null;
-        try {
-            bmp = BitmapFactory.decodeStream(
-                    getContentResolver().openInputStream(imgUri),null,options);
+        if (imv.getDrawable() ==null){
+            pic =null;
         }
-        catch (IOException e){
-            Toast.makeText(this,"無法讀取圖片",Toast.LENGTH_LONG).show();
-            return;
-        }
+        else{
+            iw = options.outWidth;
+            ih = options.outHeight;
+            vw = imv.getWidth();
+            vh = imv.getHeight();
+            int scaleFactor = Math.min(iw/vw,ih/vh);
+            options.inJustDecodeBounds = false;
+            options.inSampleSize = scaleFactor;
+            Bitmap bmp = null;
+            try {
+                bmp = BitmapFactory.decodeStream(
+                        getContentResolver().openInputStream(imgUri),null,options);
+            }
+            catch (IOException e){
+                Toast.makeText(this,"無法讀取圖片",Toast.LENGTH_LONG).show();
+                return;
+            }
 
-        imv.setImageBitmap(bmp);//取圖
-        pic=bmp;
+            imv.setImageBitmap(bmp);//取圖
+            pic=bmp;
+
+        }
 
     }
 
@@ -180,7 +186,7 @@ public class Menu extends AppCompatActivity {
         cv.put("type",T[index]);
 
         // 先把 bitmap 轉成 byte
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+  /*      ByteArrayOutputStream stream = new ByteArrayOutputStream();
         pic.compress(Bitmap.CompressFormat.JPEG, 100, stream );
         byte bytes[] = stream.toByteArray();
         // 把byte變成base64
@@ -189,8 +195,23 @@ public class Menu extends AppCompatActivity {
 
 
         //放img進去SQLite
-        cv.put("image", base64);
 
+        cv.put("image", base64);*/
+
+        if(pic==null){
+            cv.put("image", "404");
+        }
+        else{
+            // 先把 bitmap 轉成 byte
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            pic.compress(Bitmap.CompressFormat.JPEG, 100, stream );
+            byte bytes[] = stream.toByteArray();
+            // 把byte變成base64
+            String base64 = Base64.encodeToString(bytes, Base64.DEFAULT);
+
+            //放img進去SQLite
+            cv.put("image", base64);
+        }
 
         try{
             if(iffromlist) {
