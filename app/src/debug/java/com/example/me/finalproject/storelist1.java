@@ -36,7 +36,7 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
     TextView tv_UID,tv_store;
     EditText et_type;
     Cursor cursor=null;
-    int num;
+    String num;
     Button bt_update,bt_query,bt_queryall;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,17 +75,25 @@ implements AdapterView.OnItemClickListener,View.OnClickListener,AdapterView.OnIt
         }
         try {
             Intent qu = getIntent();
-            String sid =qu.getStringExtra("sel");
-            num=Integer.parseInt(sid);
-            et_type.setText(num);
-            if(num ==1){
+            num=qu.getStringExtra("sel");
+            int inum=Integer.parseInt(num);
+            if(inum ==1){
                 cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"小吃"+"'" ,null);
                 UpdateListView(cursor);
-                Toast.makeText(getApplicationContext(),"query success",Toast.LENGTH_SHORT).show();
             }
-            else {
-                Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();
+            if(inum ==2){
+                cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"自助餐"+"'" ,null);
+                UpdateListView(cursor);
             }
+            if(inum ==3){
+                cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"便當"+"'" ,null);
+                UpdateListView(cursor);
+            }
+            if(inum ==4){
+                cursor = db.rawQuery("SELECT _id,store,type FROM storelist1 WHERE type='"+"麵館"+"'" ,null);
+                UpdateListView(cursor);
+            }
+
         }
         catch (Exception ex){
             Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_SHORT).show();

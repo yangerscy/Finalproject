@@ -49,22 +49,22 @@ public class Main2Activity extends AppCompatActivity
     }
     public  void tolittleeat (View view){
         Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
-        menustore.putExtra("sel",1);
+        menustore.putExtra("sel","1");
         startActivity(menustore);
     }
     public  void tolaunchbox (View view){
         Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
-        menustore.putExtra("sel",3);
+        menustore.putExtra("sel","3");
         startActivity(menustore);
     }
     public  void tonoodleshop (View view){
         Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
-        menustore.putExtra("sel",4);
+        menustore.putExtra("sel","4");
         startActivity(menustore);
     }
     public  void tobuffe (View view){
         Intent menustore = new Intent(Main2Activity.this,com.example.me.finalproject.storelist1.class);
-        menustore.putExtra("sel",2);
+        menustore.putExtra("sel","2");
         startActivity(menustore);
     }
 
